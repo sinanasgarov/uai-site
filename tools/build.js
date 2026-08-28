@@ -22,6 +22,12 @@ const vm = require("vm");
 const ROOT = path.join(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 
+// GitHub Pages base — used only to build absolute canonical/og:image URLs
+// (both need to be fully-qualified per spec); every on-page link/asset
+// reference stays relative so the site also works opened from disk or
+// from any subfolder on any static host.
+const SITE = "https://sinanasgarov.github.io/uai-site/";
+
 // ---------------------------------------------------------------------
 // 1. Load window.UAI out of content.js without retyping the data model.
 // ---------------------------------------------------------------------
@@ -55,6 +61,14 @@ function altOf(url) {
 // ---------------------------------------------------------------------
 // 3. <head> + header + footer — identical on every page.
 // ---------------------------------------------------------------------
+// og:image (and canonical) must be fully-qualified per the OpenGraph spec —
+// crawlers won't resolve a relative URL — so a local "./images/x.jpg" path
+// gets the site origin prepended here rather than at every call site.
+function absoluteUrl(pathOrUrl) {
+  if (/^https?:\/\//.test(pathOrUrl)) return pathOrUrl;
+  return SITE + pathOrUrl.replace(/^\.\//, "");
+}
+
 function headBlock({ title, description, canonical, ogImage }) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,7 +80,7 @@ function headBlock({ title, description, canonical, ogImage }) {
 <meta property="og:site_name" content="United Assets Investments">
 <meta property="og:title" content="${attr(title)}">
 <meta property="og:description" content="${attr(description)}">
-<meta property="og:image" content="${attr(ogImage || D.img.heroPort)}">
+<meta property="og:image" content="${attr(absoluteUrl(ogImage || D.img.heroPort))}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="./styles.css">
 <script src="./script.js" defer></script>`;
@@ -277,4 +291,4 @@ ${footerBlock()}
 `;
 }
 
-module.exports = { D, esc, attr, altOf, page, DIST, ROOT };
+module.exports = { D, esc, attr, altOf, page, DIST, ROOT, SITE };
