@@ -1,0 +1,102 @@
+"use strict";
+const { D, esc, attr, altOf } = require("../build.js");
+
+function build() {
+  const facts = [
+    { t: "Oman-based", s: "Registered and operating from Muscat." },
+    { t: "Multi-sector", s: "Eight commercial desks under one group." },
+    { t: "International outlook", s: "Sourcing beyond the home market." },
+    { t: "B2B focused", s: "Companies, projects and institutions." },
+  ];
+
+  const factsHtml = facts.map((f) => `
+        <div style="background:var(--color-bg);padding:18px 16px">
+          <p style="font-family:var(--font-heading);font-size:17px;margin:0 0 4px">${esc(f.t)}</p>
+          <p style="font-size:11.5px;line-height:1.6;opacity:.62;margin:0">${esc(f.s)}</p>
+        </div>`).join("");
+
+  const processHtml = D.process.map((p) => `
+        <div data-reveal="1" style="background:var(--color-surface);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(12px,2.4vw,44px);padding:clamp(20px,2.4vw,34px) 0;align-items:baseline">
+          <div style="display:flex;gap:18px;align-items:baseline">
+            <span style="font-size:11.5px;color:var(--color-accent);font-variant-numeric:tabular-nums;letter-spacing:.14em">${esc(p.num)}</span>
+            <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(21px,2.1vw,32px);margin:0">${esc(p.name)}</h3>
+          </div>
+          <p style="font-size:14.5px;line-height:1.8;opacity:.74;margin:0;max-width:62ch">${esc(p.text)}</p>
+        </div>`).join("");
+
+  const whyHtml = D.why.map((w) => `
+        <div data-reveal="1" class="uai-card-hover" style="border:1px solid var(--color-divider);border-radius:2px;padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;gap:10px">
+          <span style="width:7px;height:7px;background:var(--color-accent);display:block;transform:rotate(45deg);margin-bottom:6px"></span>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:22px;margin:0">${esc(w.name)}</h3>
+          <p style="font-size:13.5px;line-height:1.75;opacity:.72;margin:0">${esc(w.text)}</p>
+        </div>`).join("");
+
+  return `<section aria-labelledby="ab-title" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden;min-height:clamp(380px,56vh,640px);display:flex;align-items:flex-end">
+  <img src="${attr(D.img.office)}" alt="${attr(altOf(D.img.office))}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.36;filter:sepia(.18) saturate(.72)">
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,#1b1a18 4%,color-mix(in srgb,#1b1a18 66%,transparent) 50%,color-mix(in srgb,#1b1a18 26%,transparent))"></div>
+  <div style="position:relative;width:100%;max-width:1560px;margin:0 auto;padding:clamp(80px,12vh,150px) clamp(18px,3.4vw,56px) clamp(34px,4vw,64px)">
+    <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:24px">
+      <a href="index.html" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent)">About Us</span>
+    </nav>
+    <h1 id="ab-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(36px,6.4vw,94px);line-height:1;letter-spacing:-.02em;margin:0 0 20px;max-width:22ch">A Trading Platform, Built in Oman.</h1>
+    <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.8;opacity:.76;margin:0;max-width:62ch">${esc(D.brand.legal)} is a diversified business company connecting suppliers, customers, industries and international markets across trade, logistics, industrial supply and commercial services.</p>
+  </div>
+</section>
+
+<section style="background:var(--color-bg);padding:clamp(50px,7vw,116px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(30px,4.5vw,84px);align-items:start">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 20px">Positioning</p>
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.06;margin:0 0 24px;max-width:20ch">${esc(D.brand.positioning)}</h2>
+      <p style="font-size:15.5px;line-height:1.85;text-align:justify;hyphens:auto;margin:0 0 16px;max-width:56ch">The company was formed around a straightforward observation: buyers in the region frequently need materials, equipment and the movement of both, and are obliged to assemble that from separate parties. We operate the commercial desks and the coordination behind them as one structure.</p>
+      <p style="font-size:15.5px;line-height:1.85;text-align:justify;hyphens:auto;margin:0 0 16px;max-width:56ch;opacity:.85">That structure covers eight sectors &mdash; from administrative and logistics services through housewares, electrical equipment, chemicals, machinery, building materials and metals. Each has its own supplier base and specification discipline; the logistics and administration functions serve all of them.</p>
+      <p style="font-size:15.5px;line-height:1.85;text-align:justify;hyphens:auto;margin:0;max-width:56ch;opacity:.85">We do not claim scale we have not built. What we offer is a serious commercial counterparty in Oman: one that reads a specification properly, sources against it honestly, and says so when a requirement cannot be met on the terms requested.</p>
+    </div>
+    <div data-reveal="1">
+      <figure style="margin:0 0 clamp(22px,3vw,36px)">
+        <div class="plate" style="border-width:8px">
+          <img src="${attr(D.img.meeting)}" alt="${attr(altOf(D.img.meeting))}" style="width:100%;height:clamp(260px,32vw,420px);object-fit:cover">
+        </div>
+        <figcaption style="font-size:11px;margin-top:10px;opacity:.55">Requirements are reviewed commercially and technically before an offer is made.</figcaption>
+      </figure>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">${factsHtml}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="ab-process" style="background:var(--color-surface);padding:clamp(50px,7vw,110px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="max-width:56ch;margin-bottom:clamp(26px,3.6vw,52px)">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">How we work</p>
+      <h2 id="ab-process" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0">Six stages, in the order they actually happen</h2>
+    </div>
+    <div style="display:grid;gap:1px;background:var(--color-divider)">${processHtml}
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="ab-why" style="background:var(--color-bg);padding:clamp(50px,7vw,110px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <h2 id="ab-why" data-reveal="1" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0 0 clamp(26px,3.4vw,46px)">Why United Assets?</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:clamp(14px,1.6vw,24px)">${whyHtml}
+    </div>
+  </div>
+</section>
+
+<section aria-label="Company profile" style="background:#1b1a18;color:#f3f2f2;padding:clamp(44px,6vw,96px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3.4vw,60px);align-items:center">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Company profile</p>
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3.4vw,50px);line-height:1.06;margin:0 0 14px;max-width:24ch">The full profile, on request</h2>
+      <p style="font-size:14.5px;line-height:1.8;opacity:.7;margin:0;max-width:52ch">A PDF company profile covering sectors, capabilities and commercial terms is issued to prospective clients and suppliers. The document is maintained by the company and updated through the admin console.</p>
+    </div>
+    <div data-reveal="1" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="uai-btn-accent" href="contact.html">Request the profile <span data-arrow="1" style="display:inline-block">&#8594;</span></a>
+      <a class="uai-btn-outline-light" href="sectors.html">Explore Our Business</a>
+    </div>
+  </div>
+</section>`;
+}
+
+module.exports = build;

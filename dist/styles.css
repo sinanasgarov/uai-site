@@ -1,0 +1,265 @@
+/* Classical — design-system tokens and component classes.
+   Ported verbatim from _ds/classical-97be8379-9a4b-4248-8d81-374dd84eb307/styles.css
+   (values unchanged — see that file for the original design-system source). */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Lora:wght@400;600&display=swap');
+
+:root {
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201f1d;
+  --color-accent: #b68235;
+  --color-accent-2: #ac803e;
+  --color-divider: color-mix(in srgb, #201f1d 16%, transparent);
+
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --color-accent-100: #fff3e4;
+  --color-accent-200: #ffe3bf;
+  --color-accent-300: #facb8d;
+  --color-accent-400: #e1ad66;
+  --color-accent-500: #c28d41;
+  --color-accent-600: #a06f24;
+  --color-accent-700: #7d5411;
+  --color-accent-800: #5a3b0a;
+  --color-accent-900: #3a270d;
+
+  --color-accent-2-100: #fff3e4;
+  --color-accent-2-200: #ffe3be;
+  --color-accent-2-300: #f5cd96;
+  --color-accent-2-400: #dbaf70;
+  --color-accent-2-500: #bc8f4e;
+  --color-accent-2-600: #9b7232;
+  --color-accent-2-700: #79561f;
+  --color-accent-2-800: #573d14;
+  --color-accent-2-900: #382810;
+
+  --font-heading: "Cormorant Garamond", system-ui, sans-serif;
+  --font-heading-weight: 600;
+  --font-body: "Lora", system-ui, sans-serif;
+
+  --space-1: 4.6px;
+  --space-2: 9.2px;
+  --space-3: 13.8px;
+  --space-4: 18.4px;
+  --space-6: 27.6px;
+  --space-8: 36.8px;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 7px;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+}
+
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: var(--font-heading-weight); }
+
+.plate{filter:sepia(0.22) saturate(0.82) contrast(1.05);box-sizing:border-box;
+  border:6px solid var(--color-surface);outline:1px solid var(--color-divider)}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 400; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight);
+  line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 var(--space-2);
+}
+p { margin: 0 0 var(--space-3); }
+a { color: var(--color-accent-700); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent); }
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+figcaption {
+  font-size: 11px; margin-top: var(--space-1);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+.text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+.hr { height: 1px; border: 0; margin: var(--space-4) 0; background: var(--color-divider); }
+
+/* ══════════════════════════════════════════════════════════════════════
+   Site chrome, interaction states and utilities added for the static
+   rebuild — replaces what the Claude Design / React runtime used to do
+   with inline `onMouseEnter`/`onClick`/`style-hover` props and
+   conditional rendering. Everything below reproduces the same colors,
+   spacing and behavior with plain CSS + script.js.
+   ══════════════════════════════════════════════════════════════════ */
+
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; }
+::-webkit-scrollbar { height: 6px; width: 6px; }
+::-webkit-scrollbar-thumb { background: color-mix(in srgb, #201f1d 22%, transparent); }
+:focus-visible { outline: 2px solid #b68235; outline-offset: 2px; }
+input, textarea, select, button { font-family: inherit; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: 0; border-color: #b68235; }
+
+[data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s cubic-bezier(.2,.6,.2,1), transform .55s cubic-bezier(.2,.6,.2,1); }
+[data-reveal].uai-in { opacity: 1; transform: none; }
+[data-zoom] img { transition: transform .6s cubic-bezier(.2,.6,.2,1); }
+[data-zoom]:hover img { transform: scale(1.06); }
+[data-arrow] { transition: transform .3s ease; }
+[data-zoom]:hover [data-arrow], a:hover > [data-arrow], button:hover > [data-arrow] { transform: translateX(6px); }
+
+@keyframes uai-drift { from { transform: scale(1.06) translate3d(0,0,0); } to { transform: scale(1.14) translate3d(-1.5%,-1%,0); } }
+@keyframes uai-fade { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@keyframes uai-dash { to { stroke-dashoffset: -1000; } }
+@keyframes uai-pulse { 0%,100% { opacity: .25; transform: scale(1); } 50% { opacity: .7; transform: scale(1.7); } }
+@keyframes uai-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+@media print { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+
+/* — nav / header — */
+.uai-header { position: sticky; top: 0; z-index: 100; background: var(--color-bg); backdrop-filter: blur(10px);
+  border-bottom: 1px solid color-mix(in srgb,#201f1d 7%,transparent); transition: background .35s ease, border-color .35s ease, box-shadow .35s ease; }
+.uai-header.is-compact { background: color-mix(in srgb, #f3f2f2 94%, transparent); border-bottom-color: color-mix(in srgb,#201f1d 12%,transparent); box-shadow: 0 1px 18px rgba(32,31,29,.07); }
+.uai-header-inner { max-width: 1560px; margin: 0 auto; padding: 0 clamp(18px,3.4vw,56px); display: flex; align-items: center; gap: clamp(16px,2.4vw,40px); height: 84px; transition: height .35s ease; }
+.uai-header.is-compact .uai-header-inner { height: 64px; }
+.uai-brand { display: flex; flex-direction: column; gap: 1px; text-decoration: none; color: inherit; margin-right: auto; flex: none; }
+.uai-brand-name { font-family: var(--font-heading); font-size: clamp(17px,1.5vw,22px); letter-spacing: .005em; line-height: 1; white-space: nowrap; }
+.uai-brand-tag { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; opacity: .55; white-space: nowrap; }
+.uai-nav { display: flex; align-items: center; gap: clamp(14px,1.7vw,28px); }
+.uai-nav-link, .uai-mega-toggle { text-decoration: none; color: inherit; font-size: 13.5px; letter-spacing: .01em; padding: 6px 0; border-bottom: 1px solid transparent; background: none; border-top: 0; border-left: 0; border-right: 0; font: inherit; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.uai-nav-link:hover, .uai-mega-toggle:hover, .uai-nav-link[aria-current="page"] { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+.uai-caret { font-size: 9px; transition: transform .25s ease; }
+.uai-mega-wrap.is-open .uai-caret { transform: rotate(180deg); }
+.uai-icon-btn { background: none; border: 1px solid var(--color-divider); width: 36px; height: 36px; border-radius: 2px; cursor: pointer; color: inherit; display: grid; place-items: center; flex: none; }
+.uai-icon-btn:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.uai-header-cta { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--font-heading); font-weight: 600; font-size: 13px; letter-spacing: .02em; color: var(--color-accent); border: 1px solid var(--color-accent); padding: 10px 18px; border-radius: 2px; flex: none; white-space: nowrap; }
+.uai-header-cta:hover { background: color-mix(in srgb, #b68235 12%, transparent); }
+.uai-burger { display: none; background: none; border: 1px solid var(--color-divider); width: 38px; height: 38px; border-radius: 2px; cursor: pointer; color: inherit; place-items: center; flex: none; }
+
+@media (max-width: 1180px) {
+  .uai-nav, .uai-header-cta { display: none !important; }
+  .uai-burger { display: grid !important; }
+}
+
+/* Sidebar + content layouts (Catalogue, Contact, Legal) were sized by
+   measuring window.innerWidth in the original React logic (`cols`) —
+   here that becomes a real breakpoint so the fixed-width sidebar track
+   doesn't force horizontal scroll on narrow viewports. */
+@media (max-width: 900px) {
+  .uai-sidebar-layout { grid-template-columns: minmax(0, 1fr) !important; }
+  .uai-sidebar-layout > :first-child { position: static !important; }
+}
+
+.uai-mega { border-top: 1px solid var(--color-divider); background: #1b1a18; color: #f3f2f2; animation: uai-fade .3s ease both; display: none; }
+.uai-mega-wrap.is-open .uai-mega { display: block; }
+.uai-mega-inner { max-width: 1560px; margin: 0 auto; padding: clamp(24px,3vw,44px) clamp(18px,3.4vw,56px); display: grid; grid-template-columns: minmax(200px,1fr) 3fr; gap: clamp(24px,4vw,64px); }
+.uai-mega-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 1px; background: color-mix(in srgb,#f3f2f2 14%,transparent); }
+.uai-mega-item { background: #1b1a18; text-decoration: none; color: inherit; padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; }
+.uai-mega-item:hover { background: #242220; }
+
+.uai-mobile-panel { position: fixed; inset: 0; z-index: 120; background: #1b1a18; color: #f3f2f2; overflow-y: auto; animation: uai-fade .28s ease both; display: none; }
+.uai-mobile-panel.is-open { display: block; }
+.uai-mobile-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid color-mix(in srgb,#f3f2f2 14%,transparent); }
+.uai-mobile-close { background: none; border: 1px solid color-mix(in srgb,#f3f2f2 25%,transparent); color: inherit; width: 38px; height: 38px; border-radius: 2px; cursor: pointer; }
+.uai-mobile-body { padding: 8px 20px 40px; }
+.uai-mobile-link { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid color-mix(in srgb,#f3f2f2 12%,transparent); text-decoration: none; color: inherit; font-family: var(--font-heading); font-size: 21px; }
+.uai-mobile-sector { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb,#f3f2f2 8%,transparent); text-decoration: none; color: inherit; font-size: 14.5px; }
+.uai-mobile-ctas { display: grid; gap: 10px; margin-top: 28px; }
+.uai-mobile-cta-primary { text-align: center; padding: 14px; border: 1px solid var(--color-accent); color: var(--color-accent); text-decoration: none; font-family: var(--font-heading); font-size: 15px; border-radius: 2px; }
+.uai-mobile-cta-secondary { text-align: center; padding: 14px; border: 1px solid color-mix(in srgb,#f3f2f2 25%,transparent); color: #f3f2f2; text-decoration: none; font-family: var(--font-heading); font-size: 15px; border-radius: 2px; }
+
+.uai-search-backdrop { position: fixed; inset: 0; z-index: 140; background: color-mix(in srgb,#1b1a18 88%,transparent); display: none; justify-content: center; padding: clamp(16px,8vh,110px) 16px 16px; animation: uai-fade .22s ease both; }
+.uai-search-backdrop.is-open { display: flex; }
+.uai-search-panel { width: min(880px,100%); background: var(--color-bg); border: 1px solid color-mix(in srgb,#201f1d 14%,transparent); border-radius: 3px; max-height: 78vh; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,.35); }
+.uai-search-field { display: flex; align-items: center; gap: 14px; padding: 18px 22px; border-bottom: 1px solid var(--color-divider); }
+.uai-search-input { flex: 1; border: 0; background: none; font: inherit; font-size: 19px; font-family: var(--font-heading); color: var(--color-text); outline: none; }
+.uai-search-esc { background: none; border: 1px solid var(--color-divider); border-radius: 2px; padding: 5px 9px; font-size: 10.5px; letter-spacing: .1em; cursor: pointer; color: inherit; font-family: var(--font-body); }
+.uai-search-results { overflow-y: auto; padding: 8px 0 14px; }
+.uai-search-row { display: flex; align-items: baseline; gap: 16px; padding: 13px 22px; text-decoration: none; color: inherit; border-bottom: 1px solid color-mix(in srgb,#201f1d 7%,transparent); }
+.uai-search-row:hover { background: color-mix(in srgb,#b68235 9%,transparent); }
+.uai-search-row-title { font-family: var(--font-heading); font-size: 17px; flex: 1; }
+.uai-search-row-type { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; opacity: .5; }
+.uai-search-empty { padding: 44px 22px; text-align: center; }
+.uai-search-idle { padding: 18px 22px 8px; }
+.uai-search-suggestions { display: flex; flex-wrap: wrap; gap: 8px; }
+.uai-search-chip { border: 1px solid var(--color-divider); background: none; font: inherit; font-size: 12.5px; padding: 7px 13px; border-radius: 2px; cursor: pointer; color: inherit; }
+.uai-search-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+.uai-consent { position: fixed; z-index: 95; left: 0; right: 0; bottom: 0; background: #1b1a18; color: #f3f2f2; border-top: 1px solid color-mix(in srgb,#b68235 45%,transparent); padding: 16px clamp(18px,3.4vw,56px); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; box-shadow: 0 -8px 30px rgba(0,0,0,.3); animation: uai-fade .45s ease .3s both; }
+.uai-consent.is-hidden { display: none; }
+.uai-consent-btn { font: inherit; font-family: var(--font-heading); font-size: 13px; padding: 10px 18px; background: transparent; border-radius: 2px; cursor: pointer; white-space: nowrap; }
+.uai-consent-accept { border: 1px solid var(--color-accent); color: var(--color-accent); }
+.uai-consent-accept:hover { background: color-mix(in srgb,#b68235 14%,transparent); }
+.uai-consent-decline { border: 1px solid color-mix(in srgb,#f3f2f2 26%,transparent); color: #f3f2f2; }
+
+.uai-sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; display: none; grid-template-columns: 1fr 1fr; gap: 1px; background: color-mix(in srgb,#f3f2f2 16%,transparent); border-top: 1px solid color-mix(in srgb,#f3f2f2 18%,transparent); box-shadow: 0 -6px 24px rgba(0,0,0,.22); }
+@media (max-width: 1180px) { .uai-sticky-cta.uai-sticky-show { display: grid; } body.uai-has-sticky-cta { padding-bottom: 56px; } }
+.uai-sticky-cta a { background: #1b1a18; text-decoration: none; font-family: var(--font-heading); font-size: 14.5px; padding: 16px 12px; text-align: center; min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.uai-sticky-cta a:first-child { color: var(--color-accent); }
+.uai-sticky-cta a:last-child { color: #f3f2f2; }
+
+/* — footer — */
+.uai-footer { background: #1b1a18; color: #f3f2f2; padding: clamp(48px,6vw,88px) 0 0; }
+.uai-footer-inner { max-width: 1560px; margin: 0 auto; padding: 0 clamp(18px,3.4vw,56px); }
+.uai-footer-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: clamp(28px,3vw,48px); padding-bottom: clamp(36px,4vw,56px); }
+.uai-footer-heading { font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 16px; }
+.uai-footer-links { display: grid; gap: 9px; }
+.uai-footer-link { font-size: 13px; color: #f3f2f2; opacity: .72; text-decoration: none; }
+.uai-footer-link:hover { opacity: 1; color: var(--color-accent); }
+.uai-footer-bottom { border-top: 1px solid color-mix(in srgb,#f3f2f2 14%,transparent); padding: 22px 0 30px; display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; justify-content: space-between; }
+.uai-footer-legal { font-size: 11.5px; color: #f3f2f2; opacity: .5; text-decoration: none; }
+.uai-footer-legal:hover { opacity: 1; }
+
+/* — generic interactive helpers used across pages (reproduce the values
+   the original inline `style-hover` props carried, as real CSS) — */
+.uai-btn-accent { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-family: var(--font-heading); font-size: 14px; border-radius: 2px; padding: 14px 24px; border: 1px solid var(--color-accent); color: var(--color-accent-700); }
+.uai-btn-accent:hover { background: color-mix(in srgb,#b68235 12%,transparent); }
+.uai-btn-outline-light { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; font-family: var(--font-heading); font-size: 14px; border-radius: 2px; padding: 14px 24px; border: 1px solid color-mix(in srgb,#f3f2f2 30%,transparent); color: #f3f2f2; }
+.uai-btn-outline-light:hover { border-color: #f3f2f2; }
+.uai-underline-link { display: inline-flex; align-items: center; gap: 9px; font-size: 13.5px; color: var(--color-accent-700); text-decoration: none; border-bottom: 1px solid color-mix(in srgb,#b68235 40%,transparent); padding-bottom: 3px; }
+.uai-underline-link:hover { color: var(--color-accent); }
+.uai-tile-hover:hover { background: color-mix(in srgb,#b68235 7%,transparent); }
+.uai-card-hover:hover { border-color: color-mix(in srgb,#b68235 55%,transparent) !important; }
+.uai-row-hover-dark:hover { background: #242220; }
+.uai-row-hover-tint:hover { background: color-mix(in srgb,#b68235 8%,transparent); }
+.uai-chip-hover:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.uai-catlink-hover:hover { background: color-mix(in srgb,#b68235 7%,transparent) !important; }
+.uai-solutions-index-link:hover, .uai-solutions-index-link.is-active { color: var(--color-accent); border-bottom-color: var(--color-accent); }
+
+.uai-insight-chip:hover, .uai-insight-chip.is-active { background: color-mix(in srgb,#b68235 13%,transparent) !important; border-color: #b68235 !important; color: var(--color-accent-700) !important; }
+.uai-region-btn.is-active { color: #b68235 !important; border-bottom-color: #b68235 !important; }
+.uai-flow-btn.is-active { background: color-mix(in srgb,#b68235 14%,transparent) !important; box-shadow: inset 0 2px 0 0 #b68235 !important; }
+.uai-finder-btn.is-active { background: color-mix(in srgb,#b68235 14%,transparent) !important; border-color: #b68235 !important; color: var(--color-accent-700) !important; }
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] > summary .uai-details-icon { transform: rotate(45deg); }
+details > summary:hover { background: color-mix(in srgb,#b68235 7%,transparent); }
+
+table.table th { font-family: var(--font-heading); font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+
+/* — components (unused directly on content pages today, kept for the
+   admin/console reference and any future page built from this system) — */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 14px; line-height: 1.2; color: var(--color-text); background: transparent; border: 1px solid transparent; padding: var(--space-2) calc(var(--space-3) * 1.2); border-radius: var(--radius-md); }
+.btn svg { display: block; }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.field > label { display: block; font-size: 12px; margin-bottom: 5px; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+.input { width: 100%; min-height: 36px; padding: 6px 10px; font: inherit; font-size: 14px; color: var(--color-text); caret-color: var(--color-accent); background: transparent; border: 1px solid var(--color-divider); border-radius: var(--radius-md); }
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+.tag { display: inline-flex; align-items: center; font-size: 11px; letter-spacing: 0.02em; padding: 3px 10px; border-radius: calc(var(--radius-md) * 0.75); }
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
