@@ -40,26 +40,43 @@
   }
 
   // ---- mega menu (desktop hover + keyboard/click toggle) ------------
+  // #uai-mega is *not* a DOM descendant of #uai-mega-wrap (it renders as a
+  // full-width panel right below the header, same as the original's
+  // conditionally-mounted <sc-if> block) — so visibility toggles on the
+  // panel itself, not through a `.wrap.is-open .panel` descendant rule.
   function initMegaMenu() {
     var wrap = $("#uai-mega-wrap");
     var toggle = $("#uai-mega-toggle");
-    if (!wrap || !toggle) return;
+    var mega = $("#uai-mega");
+    if (!wrap || !toggle || !mega) return;
+    var hoverOpenedAt = 0;
     var open = function () {
       if (window.innerWidth < 1181) return;
       wrap.classList.add("is-open");
+      mega.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
     };
     var close = function () {
       wrap.classList.remove("is-open");
+      mega.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
     };
-    wrap.addEventListener("mouseenter", open);
+    wrap.addEventListener("mouseenter", function () { hoverOpenedAt = Date.now(); open(); });
     wrap.addEventListener("mouseleave", close);
+    mega.addEventListener("mouseenter", open);
+    mega.addEventListener("mouseleave", close);
     toggle.addEventListener("click", function () {
-      wrap.classList.contains("is-open") ? close() : open();
+      // A physical mouse click is always preceded by its own mouseenter on
+      // `wrap`, which may have *just* opened the menu — treat a click that
+      // immediately follows that hover as "keep open" rather than a
+      // toggle-close, or hovering-then-clicking would instantly re-close
+      // the menu it just opened. A later click (or one with no preceding
+      // hover, e.g. keyboard/touch) still toggles normally.
+      if (mega.classList.contains("is-open") && Date.now() - hoverOpenedAt < 400) return;
+      mega.classList.contains("is-open") ? close() : open();
     });
     document.addEventListener("click", function (e) {
-      if (!wrap.contains(e.target)) close();
+      if (!wrap.contains(e.target) && !mega.contains(e.target)) close();
     });
     window._uaiCloseMega = close;
   }
