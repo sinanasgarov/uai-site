@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="United Assets Investments is an Oman-based diversified business company connecting international markets, suppliers and commercial opportunities across trade, logistics and industrial supply.">
+<meta property="og:title" content="United Assets Investments SPC">
+<meta property="og:description" content="Connecting Markets. Moving Industries. Creating Value.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="_ds/classical-97be8379-9a4b-4248-8d81-374dd84eb307/styles.css">
+<script src="_ds/classical-97be8379-9a4b-4248-8d81-374dd84eb307/_ds_bundle.js"></script>
+<script src="content.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); -webkit-font-smoothing: antialiased; }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent); }
+  ::selection { background: color-mix(in srgb, #b68235 30%, transparent); }
+  [data-reveal] { opacity: 0; transform: translateY(16px); transition: opacity .55s cubic-bezier(.2,.6,.2,1), transform .55s cubic-bezier(.2,.6,.2,1); }
+  [data-reveal].uai-in { opacity: 1; transform: none; }
+  [data-zoom] img { transition: transform .6s cubic-bezier(.2,.6,.2,1); }
+  [data-zoom]:hover img { transform: scale(1.06); }
+  [data-arrow] { transition: transform .3s ease; }
+  [data-zoom]:hover [data-arrow], a:hover > [data-arrow], button:hover > [data-arrow] { transform: translateX(6px); }
+  @keyframes uai-drift { from { transform: scale(1.06) translate3d(0,0,0); } to { transform: scale(1.14) translate3d(-1.5%,-1%,0); } }
+  @keyframes uai-fade { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+  @keyframes uai-dash { to { stroke-dashoffset: -1000; } }
+  @keyframes uai-pulse { 0%,100% { opacity: .25; transform: scale(1); } 50% { opacity: .7; transform: scale(1.7); } }
+  @keyframes uai-spin { to { transform: rotate(360deg); } }
+  :focus-visible { outline: 2px solid #b68235; outline-offset: 2px; }
+  input, textarea, select, button { font-family: inherit; }
+  input:focus-visible, textarea:focus-visible, select:focus-visible { outline-offset: 0; border-color: #b68235; }
+  table.table th { font-family: var(--font-heading); font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+  ::-webkit-scrollbar { height: 6px; width: 6px; }
+  ::-webkit-scrollbar-thumb { background: color-mix(in srgb, #201f1d 22%, transparent); }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+    [data-reveal] { opacity: 1 !important; transform: none !important; }
+  }
+  @media print { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;font-family:var(--font-body)">
+
+  <a href="#uai-main" style="position:absolute;left:-9999px;top:0;background:#1b1a18;color:#f3f2f2;padding:10px 16px;z-index:200" style-focus="left:8px;top:8px">Skip to content</a>
+
+  <header style="{{ headerStyle }}" hint-placeholder-val="" role="banner">
+    <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:flex;align-items:center;gap:clamp(16px,2.4vw,40px);height:{{ headerH }}">
+
+      <a href="#/" onClick="{{ go }}" style="display:flex;flex-direction:column;gap:1px;text-decoration:none;color:inherit;margin-right:auto;flex:none">
+        <span style="font-family:var(--font-heading);font-size:clamp(17px,1.5vw,22px);letter-spacing:.005em;line-height:1;white-space:nowrap">United Assets <span style="color:var(--color-accent)">Investments</span></span>
+        <span style="font-size:9px;letter-spacing:.28em;text-transform:uppercase;opacity:.55;white-space:nowrap">Trade · Logistics · Industry · Oman</span>
+      </a>
+
+      <nav aria-label="Primary" style="display:{{ navDisplay }};align-items:center;gap:clamp(14px,1.7vw,28px)">
+        <a href="#/about" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;letter-spacing:.01em;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">About Us</a>
+
+        <div onMouseEnter="{{ openMega }}" onMouseLeave="{{ closeMega }}" style="position:relative">
+          <button onClick="{{ toggleMega }}" aria-expanded="{{ megaOpen }}" style="background:none;border:0;font:inherit;font-size:13.5px;color:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">
+            Business Sectors
+            <span style="{{ caretStyle }}">▾</span>
+          </button>
+        </div>
+
+        <a href="#/solutions" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">Solutions</a>
+        <a href="#/industries" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">Industries</a>
+        <a href="#/global-reach" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">Global Reach</a>
+        <a href="#/insights" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">Insights</a>
+        <a href="#/contact" onClick="{{ go }}" style="text-decoration:none;color:inherit;font-size:13.5px;padding:6px 0;border-bottom:1px solid transparent" style-hover="color:var(--color-accent);border-bottom-color:var(--color-accent)">Contact</a>
+      </nav>
+
+      <button onClick="{{ openSearch }}" aria-label="Search this website" style="background:none;border:1px solid var(--color-divider);width:36px;height:36px;border-radius:2px;cursor:pointer;color:inherit;display:grid;place-items:center;flex:none" style-hover="border-color:var(--color-accent);color:var(--color-accent)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+      </button>
+
+      <a href="#/request-a-quote" onClick="{{ go }}" style="display:{{ ctaDisplay }};align-items:center;gap:8px;text-decoration:none;font-family:var(--font-heading);font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--color-accent);border:1px solid var(--color-accent);padding:10px 18px;border-radius:2px;flex:none;white-space:nowrap" style-hover="background:color-mix(in srgb, #b68235 12%, transparent)">
+        Request a Quote
+        <span data-arrow="1" style="display:inline-block">→</span>
+      </a>
+
+      <button onClick="{{ openMobile }}" aria-label="Open menu" style="display:{{ burgerDisplay }};background:none;border:1px solid var(--color-divider);width:38px;height:38px;border-radius:2px;cursor:pointer;color:inherit;place-items:center;flex:none">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"></path></svg>
+      </button>
+    </div>
+
+    <sc-if value="{{ megaOpen }}" hint-placeholder-val="">
+      <div onMouseEnter="{{ openMega }}" onMouseLeave="{{ closeMega }}" style="border-top:1px solid var(--color-divider);background:#1b1a18;color:#f3f2f2;animation:uai-fade .3s ease both">
+        <div style="max-width:1560px;margin:0 auto;padding:clamp(24px,3vw,44px) clamp(18px,3.4vw,56px);display:grid;grid-template-columns:minmax(200px,1fr) 3fr;gap:clamp(24px,4vw,64px)">
+          <div>
+            <p style="font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent);margin:0 0 14px">Eight sectors</p>
+            <p style="font-family:var(--font-heading);font-size:26px;line-height:1.15;margin:0 0 14px;font-weight:400">One commercial platform across trade, logistics and industry.</p>
+            <a href="#/business-sectors" onClick="{{ go }}" style="font-size:12.5px;color:var(--color-accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 45%,transparent);padding-bottom:2px">View all sectors →</a>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:color-mix(in srgb,#f3f2f2 14%,transparent)">
+            <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="8">
+              <a href="{{ s.url }}" onClick="{{ go }}" style="background:#1b1a18;text-decoration:none;color:inherit;padding:16px 18px;display:flex;gap:14px;align-items:flex-start" style-hover="background:#242220">
+                <span style="font-size:11px;color:var(--color-accent);font-variant-numeric:tabular-nums;padding-top:3px">{{ s.num }}</span>
+                <span>
+                  <span style="display:block;font-family:var(--font-heading);font-size:15.5px;line-height:1.25">{{ s.title }}</span>
+                  <span style="display:block;font-size:11.5px;opacity:.55;margin-top:3px">{{ s.kicker }}</span>
+                </span>
+              </a>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <sc-if value="{{ mobileOpen }}" hint-placeholder-val="">
+    <div role="dialog" aria-label="Menu" style="position:fixed;inset:0;z-index:120;background:#1b1a18;color:#f3f2f2;overflow-y:auto;animation:uai-fade .28s ease both">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid color-mix(in srgb,#f3f2f2 14%,transparent)">
+        <span style="font-family:var(--font-heading);font-size:17px">United Assets <span style="color:var(--color-accent)">Investments</span></span>
+        <button onClick="{{ closeMobile }}" aria-label="Close menu" style="background:none;border:1px solid color-mix(in srgb,#f3f2f2 25%,transparent);color:inherit;width:38px;height:38px;border-radius:2px;cursor:pointer">✕</button>
+      </div>
+      <div style="padding:8px 20px 40px">
+        <sc-for list="{{ mobileLinks }}" as="l" hint-placeholder-count="8">
+          <a href="{{ l.url }}" onClick="{{ go }}" style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid color-mix(in srgb,#f3f2f2 12%,transparent);text-decoration:none;color:inherit;font-family:var(--font-heading);font-size:21px">
+            {{ l.label }}
+            <span style="color:var(--color-accent);font-size:14px">→</span>
+          </a>
+        </sc-for>
+        <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:26px 0 10px">Business sectors</p>
+        <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="8">
+          <a href="{{ s.url }}" onClick="{{ go }}" style="display:flex;gap:12px;padding:12px 0;border-bottom:1px solid color-mix(in srgb,#f3f2f2 8%,transparent);text-decoration:none;color:inherit;font-size:14.5px">
+            <span style="color:var(--color-accent);font-variant-numeric:tabular-nums;font-size:11px;padding-top:3px">{{ s.num }}</span>
+            {{ s.title }}
+          </a>
+        </sc-for>
+        <div style="display:grid;gap:10px;margin-top:28px">
+          <a href="#/request-a-quote" onClick="{{ go }}" style="text-align:center;padding:14px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:15px;border-radius:2px">Request a Quote</a>
+          <a href="#/become-a-supplier" onClick="{{ go }}" style="text-align:center;padding:14px;border:1px solid color-mix(in srgb,#f3f2f2 25%,transparent);color:#f3f2f2;text-decoration:none;font-family:var(--font-heading);font-size:15px;border-radius:2px">Become a Supplier</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ searchOpen }}" hint-placeholder-val="">
+    <div role="dialog" aria-label="Search" style="position:fixed;inset:0;z-index:140;background:color-mix(in srgb,#1b1a18 88%,transparent);display:flex;justify-content:center;padding:clamp(16px,8vh,110px) 16px 16px;animation:uai-fade .22s ease both" onClick="{{ backdropClose }}">
+      <div style="width:min(880px,100%);background:var(--color-bg);border:1px solid color-mix(in srgb,#201f1d 14%,transparent);border-radius:3px;max-height:78vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.35)">
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--color-divider)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input ref="{{ searchRef }}" value="{{ q }}" onChange="{{ onQuery }}" type="search" aria-label="Search the website" placeholder="Search sectors, solutions, industries, categories…" style="flex:1;border:0;background:none;font:inherit;font-size:19px;font-family:var(--font-heading);color:var(--color-text);outline:none">
+          <button onClick="{{ closeSearch }}" style="background:none;border:1px solid var(--color-divider);border-radius:2px;padding:5px 9px;font-size:10.5px;letter-spacing:.1em;cursor:pointer;color:inherit;font-family:var(--font-body)">ESC</button>
+        </div>
+        <div style="overflow-y:auto;padding:8px 0 14px">
+          <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="5">
+                <a href="{{ r.url }}" onClick="{{ goSearch }}" style="display:flex;align-items:baseline;gap:16px;padding:13px 22px;text-decoration:none;color:inherit;border-bottom:1px solid color-mix(in srgb,#201f1d 7%,transparent)" style-hover="background:color-mix(in srgb,#b68235 9%,transparent)">
+                  <span style="font-family:var(--font-heading);font-size:17px;flex:1">{{ r.t }}</span>
+                  <span style="font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;opacity:.5">{{ r.type }}</span>
+                  <span style="color:var(--color-accent);font-size:13px">→</span>
+                </a>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noResults }}" hint-placeholder-val="">
+            <div style="padding:44px 22px;text-align:center">
+              <p style="font-family:var(--font-heading);font-size:22px;margin:0 0 6px">No matches for “{{ q }}”</p>
+              <p style="font-size:13.5px;opacity:.65;margin:0 0 18px">Try a sector name, a material, or a service — or send us the requirement directly.</p>
+              <a href="#/request-a-quote" onClick="{{ goSearch }}" style="font-size:13px;color:var(--color-accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 45%,transparent)">Request a quote →</a>
+            </div>
+          </sc-if>
+          <sc-if value="{{ searchIdle }}" hint-placeholder-val="">
+            <div style="padding:18px 22px 8px">
+              <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.5;margin:0 0 12px">Frequent searches</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="6">
+                  <button onClick="{{ applySuggestion }}" data-q="{{ s }}" style="border:1px solid var(--color-divider);background:none;font:inherit;font-size:12.5px;padding:7px 13px;border-radius:2px;cursor:pointer;color:inherit" style-hover="border-color:var(--color-accent);color:var(--color-accent)">{{ s }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <main id="uai-main" style="flex:1">
+    <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}"><dc-import name="Home" hint-size="100%,1200px"></dc-import></sc-if>
+    <sc-if value="{{ isSectors }}" hint-placeholder-val=""><dc-import name="Sectors" slug="{{ slug }}" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isAbout }}" hint-placeholder-val=""><dc-import name="About" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isSolutions }}" hint-placeholder-val=""><dc-import name="Solutions" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isIndustries }}" hint-placeholder-val=""><dc-import name="Industries" slug="{{ slug }}" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isReach }}" hint-placeholder-val=""><dc-import name="Reach" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isInsights }}" hint-placeholder-val=""><dc-import name="Insights" hint-size="100%,900px"></dc-import></sc-if>
+    <sc-if value="{{ isCatalogue }}" hint-placeholder-val=""><dc-import name="Catalogue" slug="{{ slug }}" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isForm }}" hint-placeholder-val=""><dc-import name="Forms" kind="{{ formKind }}" hint-size="100%,1200px"></dc-import></sc-if>
+    <sc-if value="{{ isContact }}" hint-placeholder-val=""><dc-import name="Contact" hint-size="100%,1000px"></dc-import></sc-if>
+    <sc-if value="{{ isLegal }}" hint-placeholder-val=""><dc-import name="Legal" kind="{{ legalKind }}" hint-size="100%,900px"></dc-import></sc-if>
+    <sc-if value="{{ isAdmin }}" hint-placeholder-val=""><dc-import name="Admin" hint-size="100%,900px"></dc-import></sc-if>
+
+    <sc-if value="{{ is404 }}" hint-placeholder-val="">
+      <section style="position:relative;min-height:78vh;display:grid;place-items:center;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1565610222536-ef125c59da2e?w=1600&q=80&auto=format&fit=crop" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;filter:sepia(.2) saturate(.7)">
+        <div style="position:relative;text-align:center;padding:60px 22px;max-width:640px">
+          <p style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Error 404</p>
+          <h1 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(38px,6vw,72px);line-height:1.05;margin:0 0 16px">Page Not Found</h1>
+          <p style="font-size:15px;line-height:1.7;opacity:.72;margin:0 0 30px">The page you're looking for may have moved or no longer exists.</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <a href="#/" onClick="{{ go }}" style="padding:13px 22px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px">Back to Home</a>
+            <a href="#/business-sectors" onClick="{{ go }}" style="padding:13px 22px;border:1px solid color-mix(in srgb,#f3f2f2 28%,transparent);color:#f3f2f2;text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px">Explore Our Business</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+  </main>
+
+  <sc-if value="{{ showConsent }}" hint-placeholder-val="">
+    <div role="dialog" aria-label="Cookie notice" style="{{ consentStyle }}">
+      <p style="font-size:12.5px;line-height:1.7;margin:0;flex:1;min-width:220px;opacity:.85">We use essential cookies for site functionality and, with your agreement, analytics cookies to understand how the site is used. See the <a href="#/cookies" onClick="{{ go }}" style="color:var(--color-accent)">Cookie Policy</a>.</p>
+      <div style="display:flex;gap:9px;flex-wrap:wrap">
+        <button onClick="{{ acceptCookies }}" style="font:inherit;font-family:var(--font-heading);font-size:13px;padding:10px 18px;background:transparent;border:1px solid var(--color-accent);color:var(--color-accent);border-radius:2px;cursor:pointer;white-space:nowrap" style-hover="background:color-mix(in srgb,#b68235 14%,transparent)">Accept analytics</button>
+        <button onClick="{{ declineCookies }}" style="font:inherit;font-family:var(--font-heading);font-size:13px;padding:10px 18px;background:transparent;border:1px solid color-mix(in srgb,#f3f2f2 26%,transparent);color:#f3f2f2;border-radius:2px;cursor:pointer;white-space:nowrap">Essential only</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showStickyCta }}" hint-placeholder-val="">
+    <div style="position:fixed;bottom:0;left:0;right:0;z-index:90;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:color-mix(in srgb,#f3f2f2 16%,transparent);border-top:1px solid color-mix(in srgb,#f3f2f2 18%,transparent);box-shadow:0 -6px 24px rgba(0,0,0,.22)">
+      <a href="#/request-a-quote" onClick="{{ go }}" style="background:#1b1a18;color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14.5px;padding:16px 12px;text-align:center;min-height:52px;display:flex;align-items:center;justify-content:center;gap:8px">Request a Quote <span data-arrow="1" style="display:inline-block">→</span></a>
+      <a href="#/contact" onClick="{{ go }}" style="background:#1b1a18;color:#f3f2f2;text-decoration:none;font-family:var(--font-heading);font-size:14.5px;padding:16px 12px;text-align:center;min-height:52px;display:flex;align-items:center;justify-content:center">Contact</a>
+    </div>
+  </sc-if>
+
+  <footer style="background:#1b1a18;color:#f3f2f2;padding:clamp(48px,6vw,88px) 0 {{ footerPad }}">
+    <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:clamp(28px,3vw,48px);padding-bottom:clamp(36px,4vw,56px)">
+        <div style="grid-column:span 1">
+          <p style="font-family:var(--font-heading);font-size:22px;margin:0 0 10px;line-height:1.2">United Assets <span style="color:var(--color-accent)">Investments</span></p>
+          <p style="font-size:13px;line-height:1.75;opacity:.62;margin:0 0 18px;max-width:34ch">An Oman-based diversified business platform connecting suppliers, customers and industries across regional and international markets.</p>
+          <a href="#/request-a-quote" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--color-accent);text-decoration:none;border:1px solid var(--color-accent);padding:10px 16px;border-radius:2px">Request a Quote <span data-arrow="1">→</span></a>
+        </div>
+        <div>
+          <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Company</p>
+          <div style="display:grid;gap:9px">
+            <a href="#/about" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">About Us</a>
+            <a href="#/business-sectors" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Business Sectors</a>
+            <a href="#/solutions" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Solutions</a>
+            <a href="#/industries" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Industries</a>
+            <a href="#/global-reach" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Global Reach</a>
+            <a href="#/insights" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Insights</a>
+            <a href="#/contact" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Business Sectors</p>
+          <div style="display:grid;gap:9px">
+            <sc-for list="{{ sectors }}" as="s" hint-placeholder-count="8">
+              <a href="{{ s.url }}" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">{{ s.title }}</a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Partnerships</p>
+          <div style="display:grid;gap:9px">
+            <a href="#/request-a-quote" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Request a Quote</a>
+            <a href="#/become-a-supplier" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Become a Supplier</a>
+            <a href="#/partner-with-us" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Partner With Us</a>
+            <a href="#/catalogue" onClick="{{ go }}" style="font-size:13px;color:#f3f2f2;opacity:.72;text-decoration:none" style-hover="opacity:1;color:var(--color-accent)">Product Catalogue</a>
+          </div>
+          <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:26px 0 12px">Company Profile</p>
+          <p style="font-size:12px;opacity:.55;margin:0;line-height:1.6">PDF profile available on request — <a href="#/contact" onClick="{{ go }}" style="color:var(--color-accent)">contact us</a>.</p>
+        </div>
+        <div>
+          <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Contact</p>
+          <div style="display:grid;gap:12px;font-size:13px;opacity:.72;line-height:1.6">
+            <span>{{ contactLocation }}</span>
+            <span style="opacity:.75;font-size:12px">Email: {{ contactEmail }}</span>
+            <span style="opacity:.75;font-size:12px">Phone: {{ contactPhone }}</span>
+            <span style="opacity:.75;font-size:12px">WhatsApp: {{ contactWhatsapp }}</span>
+          </div>
+          <a href="#/contact" onClick="{{ go }}" style="display:inline-block;margin-top:16px;font-size:12.5px;color:var(--color-accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 45%,transparent);padding-bottom:2px">Contact our team →</a>
+        </div>
+      </div>
+      <div style="border-top:1px solid color-mix(in srgb,#f3f2f2 14%,transparent);padding:22px 0 30px;display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:space-between">
+        <p style="font-size:11.5px;opacity:.5;margin:0">© 2026 United Assets Investments SPC. All rights reserved.</p>
+        <div style="display:flex;gap:22px;flex-wrap:wrap">
+          <a href="#/privacy" onClick="{{ go }}" style="font-size:11.5px;color:#f3f2f2;opacity:.5;text-decoration:none" style-hover="opacity:1">Privacy Policy</a>
+          <a href="#/terms" onClick="{{ go }}" style="font-size:11.5px;color:#f3f2f2;opacity:.5;text-decoration:none" style-hover="opacity:1">Terms of Use</a>
+          <a href="#/cookies" onClick="{{ go }}" style="font-size:11.5px;color:#f3f2f2;opacity:.5;text-decoration:none" style-hover="opacity:1">Cookie Policy</a>
+          <a href="#/admin" onClick="{{ go }}" style="font-size:11.5px;color:#f3f2f2;opacity:.5;text-decoration:none" style-hover="opacity:1">Admin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = {
+    route: { name: 'home', slug: '' },
+    scrolled: false, mega: false, mobile: false, search: false,
+    q: '', narrow: false, ready: !!window.UAI,
+    cookieChoice: (function () {
+      try { return localStorage.getItem('uai:cookie-consent') || ''; } catch (e) { return 'skip'; }
+    })()
+  };
+
+  ROUTES = {
+    '': { name: 'home', title: 'United Assets Investments SPC — Trade, Logistics & Industrial Supply, Oman', desc: 'An Oman-based diversified business company connecting international markets, suppliers and commercial opportunities across trade, logistics and industrial supply.' },
+    'about': { name: 'about', title: 'About Us | United Assets Investments', desc: 'How United Assets Investments works: an Oman-based platform built around sourcing, trading, logistics coordination and industrial supply.' },
+    'business-sectors': { name: 'sectors', title: 'Business Sectors | United Assets Investments', desc: 'Eight business sectors spanning administrative services, logistics, housewares, electrical equipment, chemicals, machinery, building materials and metals.' },
+    'solutions': { name: 'solutions', title: 'Solutions | United Assets Investments', desc: 'Strategic sourcing, international trading, supply chain coordination, procurement support, industrial supply, project supply and market access.' },
+    'industries': { name: 'industries', title: 'Industries We Serve | United Assets Investments', desc: 'Supply and sourcing support for construction, infrastructure, manufacturing, engineering, logistics, hospitality, energy and industrial projects.' },
+    'global-reach': { name: 'reach', title: 'Global Reach | United Assets Investments', desc: 'Oman as a commercial base connected to GCC, Middle East, Asia, Europe and international supply markets.' },
+    'insights': { name: 'insights', title: 'Insights | United Assets Investments', desc: 'Editorial notes on trade, logistics, procurement and industrial supply across Oman and the GCC.' },
+    'catalogue': { name: 'catalogue', title: 'Product Catalogue | United Assets Investments', desc: 'Sector, category and product architecture across the group\u2019s trading and industrial supply activities.' },
+    'contact': { name: 'contact', title: 'Contact | United Assets Investments', desc: 'Contact United Assets Investments in Muscat, Oman for trading, logistics and industrial supply enquiries.' },
+    'request-a-quote': { name: 'form', kind: 'quote', title: 'Request a Quote | United Assets Investments', desc: 'Submit a request for quotation with specifications, quantities and delivery requirements.' },
+    'become-a-supplier': { name: 'form', kind: 'supplier', title: 'Become a Supplier | United Assets Investments', desc: 'Register as a manufacturer, distributor or trading partner for regional and international supply opportunities.' },
+    'partner-with-us': { name: 'form', kind: 'partner', title: 'Partner With Us | United Assets Investments', desc: 'Commercial partnership routes for suppliers, buyers, contractors and logistics companies.' },
+    'privacy': { name: 'legal', kind: 'privacy', title: 'Privacy Policy | United Assets Investments', desc: 'How United Assets Investments handles information submitted through this website.' },
+    'terms': { name: 'legal', kind: 'terms', title: 'Terms of Use | United Assets Investments', desc: 'Terms governing use of the United Assets Investments website.' },
+    'cookies': { name: 'legal', kind: 'cookies', title: 'Cookie Policy | United Assets Investments', desc: 'Cookie categories used on the United Assets Investments website.' },
+    'admin': { name: 'admin', title: 'Admin Console | United Assets Investments', desc: 'Internal lead and content management console.' }
+  };
+
+  componentDidMount() {
+    this.onHash();
+    this._hash = () => this.onHash();
+    this._scroll = () => {
+      const s = window.scrollY > 24;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    this._resize = () => {
+      const n = window.innerWidth < 1180;
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    this._key = (e) => {
+      if (e.key === 'Escape') this.setState({ search: false, mobile: false, mega: false });
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); this.setState({ search: true }); }
+    };
+    /* Re-resolve the route once content is available: detail metadata is read
+       from UAI, which may load after first mount. */
+    this._ready = () => { this.setState({ ready: true }); this.onHash(); };
+    window.addEventListener('hashchange', this._hash);
+    window.addEventListener('scroll', this._scroll, { passive: true });
+    window.addEventListener('resize', this._resize);
+    window.addEventListener('keydown', this._key);
+    window.addEventListener('uai:ready', this._ready);
+    this._resize();
+    this.observe();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('hashchange', this._hash);
+    window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('resize', this._resize);
+    window.removeEventListener('keydown', this._key);
+    window.removeEventListener('uai:ready', this._ready);
+    if (this._io) this._io.disconnect();
+  }
+
+  componentDidUpdate() {
+    this.applyHead();
+    this.observe();
+    if (this.state.search && this._searchInput && document.activeElement !== this._searchInput) {
+      this._searchInput.focus();
+    }
+  }
+
+  /* Scroll reveal — one observer for the whole document, re-scanned per route. */
+  observe() {
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) { en.target.classList.add('uai-in'); this._io.unobserve(en.target); }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    }
+    clearTimeout(this._scan);
+    this._scan = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not(.uai-in)').forEach((el) => this._io.observe(el));
+    }, 60);
+  }
+
+  onHash() {
+    const raw = (location.hash || '#/').replace(/^#\/?/, '').replace(/\/$/, '');
+    const parts = raw.split('/').filter(Boolean);
+    const head = parts[0] || '';
+    const slug = parts.slice(1).join('/');
+    const def = this.ROUTES[head];
+    const route = def
+      ? { name: def.name, kind: def.kind || '', slug: slug, title: def.title, desc: def.desc }
+      : { name: '404', slug: '', title: 'Page Not Found | United Assets Investments', desc: 'The page you are looking for may have moved or no longer exists.' };
+
+    /* Detail routes carry their own authored metadata — ROUTES is keyed on the
+       first path segment only, so without this every detail page would inherit
+       its index page's title and description. Falls back to the index entry
+       when no record matches the slug. */
+    if (def && slug) {
+      const rec = this.recordFor(head, slug);
+      if (rec && rec.seo) {
+        if (rec.seo.title) route.title = rec.seo.title;
+        if (rec.seo.description) route.desc = rec.seo.description;
+      }
+    }
+    this.applyHead(route);
+    this.setState({ route, mega: false, mobile: false, search: false });
+    if (this._lastPath !== raw) { window.scrollTo({ top: 0, behavior: 'auto' }); this._lastPath = raw; }
+  }
+
+  /* Resolve the content record a detail route refers to, so its authored SEO
+     fields (content.js) drive the head instead of the parent index entry. */
+  recordFor(head, slug) {
+    const D = window.UAI;
+    if (!D) return null;
+    if (head === 'business-sectors' || head === 'catalogue') {
+      const s = D.sectorBySlug(slug.split('/')[0]);
+      if (!s) return null;
+      if (head === 'catalogue') {
+        return { seo: {
+          title: (s.nav || s.title) + ' Catalogue | United Assets Investments',
+          description: 'Product categories and subcategories for ' + s.title.toLowerCase() + ' — ' + s.blurb
+        } };
+      }
+      return s;
+    }
+    if (head === 'industries') {
+      const list = D.industries.filter((i) => i.slug === slug);
+      return list.length ? list[0] : null;
+    }
+    return null;
+  }
+
+  /* The router owns the <title> node outright — the helmet declares no static
+     <title>, so nothing re-applies over it on re-render (the same reason the
+     canonical <link> was already immune). Re-run after every update. */
+  applyHead(route) {
+    const r = route || this.state.route;
+    if (!r || !r.title) return;
+    let t = document.querySelector('title[data-uai-route]');
+    if (!t) {
+      document.querySelectorAll('head > title').forEach(function (n) { n.remove(); });
+      t = document.createElement('title');
+      t.setAttribute('data-uai-route', '');
+      document.head.appendChild(t);
+    }
+    if (t.textContent !== r.title) t.textContent = r.title;
+    let m = document.querySelector('meta[name="description"]');
+    if (m) m.setAttribute('content', r.desc);
+    let c = document.querySelector('link[rel="canonical"]');
+    if (!c) { c = document.createElement('link'); c.rel = 'canonical'; document.head.appendChild(c); }
+    c.href = location.origin + location.pathname + (location.hash || '#/');
+  }
+
+  setConsent(v) {
+    try { localStorage.setItem('uai:cookie-consent', v); } catch (e) {}
+    this.setState({ cookieChoice: v });
+    /* Analytics loads only on 'all'; see lib/analytics.ts in the handoff notes. */
+  }
+
+  search(q) {
+    const D = window.UAI;
+    if (!D || !q || q.trim().length < 2) return [];
+    const terms = q.toLowerCase().trim().split(/\s+/);
+    return D.searchIndex
+      .map((r) => {
+        const hay = (r.t + ' ' + r.k + ' ' + r.type).toLowerCase();
+        let score = 0;
+        terms.forEach((t) => {
+          if (r.t.toLowerCase().startsWith(t)) score += 6;
+          else if (r.t.toLowerCase().includes(t)) score += 4;
+          if (hay.includes(t)) score += 1;
+        });
+        return { r, score };
+      })
+      .filter((x) => x.score > 1)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 12)
+      .map((x) => x.r);
+  }
+
+  renderVals() {
+    const D = window.UAI;
+    const r = this.state.route;
+    const narrow = this.state.narrow;
+    const compact = this.state.scrolled;
+    const results = this.search(this.state.q);
+    const qLen = this.state.q.trim().length;
+
+    const sectors = (D ? D.sectors : []).map((s) => ({
+      num: s.num, title: s.title, kicker: s.kicker, url: '#/business-sectors/' + s.slug
+    }));
+
+    const go = (e) => {
+      const a = e.currentTarget.getAttribute('href');
+      if (a) { e.preventDefault(); if (location.hash === a) this.onHash(); else location.hash = a; }
+      this.setState({ mega: false, mobile: false, search: false });
+    };
+
+    return {
+      headerStyle: 'position:sticky;top:0;z-index:100;background:' +
+        (compact ? 'color-mix(in srgb, #f3f2f2 94%, transparent)' : 'var(--color-bg)') +
+        ';backdrop-filter:blur(10px);border-bottom:1px solid ' +
+        (compact ? 'color-mix(in srgb,#201f1d 12%,transparent)' : 'color-mix(in srgb,#201f1d 7%,transparent)') +
+        ';transition:background .35s ease, border-color .35s ease, box-shadow .35s ease;box-shadow:' +
+        (compact ? '0 1px 18px rgba(32,31,29,.07)' : 'none'),
+      headerH: compact ? '64px' : '84px',
+      navDisplay: narrow ? 'none' : 'flex',
+      ctaDisplay: narrow ? 'none' : 'inline-flex',
+      burgerDisplay: narrow ? 'grid' : 'none',
+      caretStyle: 'font-size:9px;transition:transform .25s ease;transform:rotate(' + (this.state.mega ? '180deg' : '0deg') + ')',
+
+      sectors,
+      mobileLinks: [
+        { label: 'Home', url: '#/' }, { label: 'About Us', url: '#/about' },
+        { label: 'Business Sectors', url: '#/business-sectors' }, { label: 'Solutions', url: '#/solutions' },
+        { label: 'Industries', url: '#/industries' }, { label: 'Global Reach', url: '#/global-reach' },
+        { label: 'Insights', url: '#/insights' }, { label: 'Contact', url: '#/contact' }
+      ],
+      suggestions: ['Machinery', 'Steel', 'Logistics', 'Building materials', 'Electrical equipment', 'Chemicals', 'Warehousing', 'Supplier registration'],
+
+      megaOpen: this.state.mega && !narrow,
+      mobileOpen: this.state.mobile,
+      searchOpen: this.state.search,
+      q: this.state.q,
+      results,
+      hasResults: results.length > 0,
+      noResults: qLen >= 2 && results.length === 0,
+      searchIdle: qLen < 2,
+
+      isHome: r.name === 'home',
+      isSectors: r.name === 'sectors',
+      isAbout: r.name === 'about',
+      isSolutions: r.name === 'solutions',
+      isIndustries: r.name === 'industries',
+      isReach: r.name === 'reach',
+      isInsights: r.name === 'insights',
+      isCatalogue: r.name === 'catalogue',
+      isForm: r.name === 'form',
+      isContact: r.name === 'contact',
+      isLegal: r.name === 'legal',
+      isAdmin: r.name === 'admin',
+      is404: r.name === '404',
+      slug: r.slug,
+      formKind: r.kind,
+      legalKind: r.kind,
+
+      showConsent: !this.state.cookieChoice,
+      consentStyle: 'position:fixed;z-index:95;left:0;right:0;bottom:' + (narrow ? '53px' : '0') +
+        ';background:#1b1a18;color:#f3f2f2;border-top:1px solid color-mix(in srgb,#b68235 45%,transparent);padding:16px clamp(18px,3.4vw,56px);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;box-shadow:0 -8px 30px rgba(0,0,0,.3);animation:uai-fade .45s ease .6s both',
+      acceptCookies: () => this.setConsent('all'),
+      declineCookies: () => this.setConsent('essential'),
+      showStickyCta: narrow && r.name !== 'form' && r.name !== 'contact',
+      footerPad: (narrow && r.name !== 'form' && r.name !== 'contact') ? '56px' : '0',
+
+      contactLocation: D ? D.contact.location : '',
+      contactEmail: D ? D.contact.email : '',
+      contactPhone: D ? D.contact.phone : '',
+      contactWhatsapp: D ? D.contact.whatsapp : '',
+
+      go,
+      goSearch: (e) => { go(e); },
+      openMega: () => { if (!this.state.narrow) this.setState({ mega: true }); },
+      closeMega: () => this.setState({ mega: false }),
+      toggleMega: () => this.setState({ mega: !this.state.mega }),
+      openMobile: () => this.setState({ mobile: true }),
+      closeMobile: () => this.setState({ mobile: false }),
+      openSearch: () => this.setState({ search: true, q: '' }),
+      closeSearch: () => this.setState({ search: false }),
+      backdropClose: (e) => { if (e.target === e.currentTarget) this.setState({ search: false }); },
+      onQuery: (e) => this.setState({ q: e.target.value }),
+      applySuggestion: (e) => this.setState({ q: e.currentTarget.getAttribute('data-q') }),
+      searchRef: (el) => { this._searchInput = el; if (el) setTimeout(() => el.focus(), 30); }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

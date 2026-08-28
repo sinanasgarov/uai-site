@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section aria-labelledby="ct-title" style="background:var(--color-bg);border-bottom:1px solid var(--color-divider)">
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(44px,7vw,110px) clamp(18px,3.4vw,56px) clamp(32px,4vw,64px)">
+    <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:24px">
+      <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent-700)">Contact</span>
+    </nav>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,70px);align-items:end">
+      <h1 id="ct-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(36px,6vw,88px);line-height:1;letter-spacing:-.02em;margin:0;max-width:18ch">Let's Start a Conversation</h1>
+      <p style="font-size:15px;line-height:1.82;opacity:.72;margin:0;max-width:52ch">Enquiries, quotations, supplier introductions or a question about what we can source — this reaches the commercial desk directly.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--color-bg);padding:clamp(36px,5.5vw,90px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:{{ cols }};gap:clamp(26px,3.4vw,64px);align-items:start">
+
+    <aside>
+      <div style="border:1px solid var(--color-divider);background:var(--color-surface)">
+        <div style="padding:clamp(20px,2.2vw,30px);border-bottom:1px solid var(--color-divider)">
+          <p style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0 0 12px">Company</p>
+          <p style="font-family:var(--font-heading);font-size:21px;margin:0 0 6px">United Assets Investments SPC</p>
+          <p style="font-size:13.5px;line-height:1.7;opacity:.7;margin:0">{{ location }}</p>
+          <p style="font-size:12.5px;line-height:1.7;opacity:.55;margin:8px 0 0">{{ hours }}</p>
+        </div>
+        <sc-for list="{{ channels }}" as="c" hint-placeholder-count="4">
+          <a href="{{ c.href }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px clamp(20px,2.2vw,30px);text-decoration:none;color:inherit;border-bottom:1px solid var(--color-divider)" style-hover="background:color-mix(in srgb,#b68235 8%,transparent)">
+            <span>
+              <span style="display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.5;margin-bottom:5px">{{ c.label }}</span>
+              <span style="display:block;font-size:14px;font-family:var(--font-heading)">{{ c.value }}</span>
+            </span>
+            <span data-arrow="1" style="color:var(--color-accent);font-size:14px;display:inline-block">→</span>
+          </a>
+        </sc-for>
+        <div style="padding:16px clamp(20px,2.2vw,30px)">
+          <p style="font-size:11.5px;line-height:1.7;opacity:.55;margin:0">Contact details marked “to be confirmed” are placeholders. They are held in the site configuration and appear here the moment the company supplies them.</p>
+        </div>
+      </div>
+
+      <div style="border:1px solid var(--color-divider);margin-top:20px;background:var(--color-surface)">
+        <div style="position:relative;height:clamp(200px,22vw,280px);overflow:hidden;background:#1b1a18">
+          <svg viewBox="0 0 100 60" style="position:absolute;inset:0;width:100%;height:100%" role="img" aria-label="Schematic locator: Muscat on the Gulf of Oman coast">
+            <rect x="0" y="0" width="100" height="60" fill="#1b1a18"></rect>
+            <sc-for list="{{ mapLines }}" as="l" hint-placeholder-count="8">
+              <path d="{{ l }}" fill="none" stroke="#f3f2f2" stroke-width=".2" opacity=".14"></path>
+            </sc-for>
+            <path d="M4 44 Q26 36 44 30 Q64 23 96 14" fill="none" stroke="#b68235" stroke-width=".5" opacity=".8"></path>
+            <circle cx="58" cy="25" r="1.6" fill="#b68235"></circle>
+            <circle cx="58" cy="25" r="4.5" fill="none" stroke="#b68235" stroke-width=".25" style="animation:uai-pulse 3.4s ease-in-out infinite"></circle>
+          </svg>
+          <span style="position:absolute;left:58%;top:25%;transform:translate(-50%,-190%);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#b68235;white-space:nowrap">Muscat</span>
+          <span style="position:absolute;bottom:12px;left:14px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:color-mix(in srgb,#f3f2f2 55%,transparent)">Gulf of Oman coast</span>
+        </div>
+        <div style="padding:16px clamp(18px,2vw,26px)">
+          <p style="font-size:12.5px;line-height:1.7;opacity:.65;margin:0">A live embedded map replaces this locator once the registered office address is confirmed.</p>
+        </div>
+      </div>
+    </aside>
+
+    <div>
+      <sc-if value="{{ isSuccess }}" hint-placeholder-val="">
+        <div role="status" style="border:1px solid var(--color-accent);background:var(--color-surface);padding:clamp(26px,3.4vw,52px);animation:uai-fade .4s ease both">
+          <span style="display:inline-block;width:11px;height:11px;background:var(--color-accent);transform:rotate(45deg);margin-bottom:20px"></span>
+          <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,3vw,42px);line-height:1.08;margin:0 0 14px">Thank you. Your message has been received.</h2>
+          <p style="font-size:14.5px;line-height:1.8;opacity:.74;margin:0 0 22px;max-width:52ch">A member of the commercial team will respond during Oman working hours. Your reference is <strong style="font-family:var(--font-heading);color:var(--color-accent-700);letter-spacing:.05em">{{ reference }}</strong>.</p>
+          <button onClick="{{ reset }}" style="padding:13px 22px;border:1px solid var(--color-divider);background:none;font:inherit;font-family:var(--font-heading);font-size:13.5px;border-radius:2px;cursor:pointer;color:inherit">Send another message</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+        <form onSubmit="{{ submit }}" noValidate="{{ true }}" style="border:1px solid var(--color-divider);background:var(--color-surface);padding:clamp(22px,2.6vw,40px);display:grid;gap:clamp(14px,1.8vw,22px)">
+          <div>
+            <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(22px,2.4vw,34px);margin:0 0 6px">Send a message</h2>
+            <p style="font-size:12.5px;opacity:.6;margin:0">Fields marked <span style="color:var(--color-accent)">*</span> are required.</p>
+          </div>
+
+          <sc-if value="{{ hasError }}" hint-placeholder-val="">
+            <div role="alert" style="border:1px solid #7d5411;background:color-mix(in srgb,#b68235 12%,transparent);padding:14px 18px">
+              <p style="font-size:13.5px;margin:0;color:var(--color-accent-800)">{{ errorText }}</p>
+            </div>
+          </sc-if>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:clamp(14px,1.6vw,20px)">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="7">
+              <div style="{{ f.wrapStyle }}">
+                <label for="{{ f.id }}" style="display:block;font-size:11.5px;letter-spacing:.06em;margin-bottom:6px;opacity:.75">{{ f.label }} <span style="{{ f.reqStyle }}">*</span></label>
+                <sc-if value="{{ f.isArea }}" hint-placeholder-val="">
+                  <textarea id="{{ f.id }}" name="{{ f.id }}" value="{{ f.value }}" onChange="{{ f.onChange }}" rows="5" aria-invalid="{{ f.invalid }}" style="{{ f.areaStyle }}"></textarea>
+                </sc-if>
+                <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}">
+                  <input id="{{ f.id }}" name="{{ f.id }}" type="{{ f.type }}" value="{{ f.value }}" onChange="{{ f.onChange }}" aria-invalid="{{ f.invalid }}" style="{{ f.inputStyle }}">
+                </sc-if>
+                <sc-if value="{{ f.invalid }}" hint-placeholder-val="">
+                  <p role="alert" style="font-size:11.5px;margin:6px 0 0;color:var(--color-accent-800)">{{ f.error }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+
+          <label style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.65;cursor:pointer;border-top:1px solid var(--color-divider);padding-top:16px">
+            <input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}" style="margin-top:3px;accent-color:#b68235;width:16px;height:16px">
+            <span>I consent to my details being used to respond to this enquiry, in line with the <a href="#/privacy" onClick="{{ go }}">Privacy Policy</a>.</span>
+          </label>
+
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+            <button type="submit" disabled="{{ submitting }}" style="{{ submitStyle }}">
+              <sc-if value="{{ submitting }}" hint-placeholder-val="">
+                <span style="display:inline-block;width:13px;height:13px;border:1.5px solid color-mix(in srgb,#b68235 35%,transparent);border-top-color:#b68235;border-radius:50%;animation:uai-spin .8s linear infinite"></span>
+              </sc-if>
+              {{ submitLabel }}
+            </button>
+            <p style="font-size:11.5px;opacity:.55;margin:0">Or use the RFQ form for pricing requests.</p>
+          </div>
+        </form>
+      </sc-if>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:var(--color-divider);margin-top:20px;border:1px solid var(--color-divider)">
+        <sc-for list="{{ routes }}" as="r" hint-placeholder-count="3">
+          <a href="{{ r.url }}" onClick="{{ go }}" style="background:var(--color-bg);padding:18px 20px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:6px" style-hover="background:color-mix(in srgb,#b68235 8%,transparent)">
+            <span style="font-family:var(--font-heading);font-size:17px">{{ r.t }}</span>
+            <span style="font-size:12px;line-height:1.6;opacity:.65">{{ r.s }}</span>
+            <span data-arrow="1" style="color:var(--color-accent);font-size:13px;display:inline-block;margin-top:4px">→</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { values: {}, errors: {}, consent: false, submitting: false, success: false, error: '', reference: '', ready: !!window.UAI };
+
+  FIELDS = [
+    { id: 'name', label: 'Name', req: true },
+    { id: 'company', label: 'Company', req: true },
+    { id: 'email', label: 'Email', type: 'email', req: true },
+    { id: 'phone', label: 'Phone', type: 'tel' },
+    { id: 'country', label: 'Country', req: true },
+    { id: 'subject', label: 'Subject', req: true, full: true },
+    { id: 'message', label: 'Message', kind: 'area', req: true, full: true }
+  ];
+
+  componentDidMount() {
+    this._r = () => this.setState({ ready: true });
+    window.addEventListener('uai:ready', this._r);
+    this._rz = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this._rz);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('uai:ready', this._r);
+    window.removeEventListener('resize', this._rz);
+  }
+
+  renderVals() {
+    const D = window.UAI;
+    const go = (e) => { const a = e.currentTarget.getAttribute('href'); if (a) { e.preventDefault(); location.hash = a; } };
+    const st = this.state;
+    const c = D ? D.contact : { location: '', hours: '', email: '', phone: '', whatsapp: '' };
+    const inputBase = 'width:100%;min-height:42px;padding:9px 12px;font:inherit;font-size:14px;background:var(--color-bg);border:1px solid var(--color-divider);border-radius:2px;color:var(--color-text);caret-color:var(--color-accent)';
+
+    const mailHref = c.email && c.email.indexOf('@') > -1 && c.email.indexOf('confirmed') === -1 ? 'mailto:' + c.email : '#/contact';
+    const telHref = c.phone && /\d{4}/.test(c.phone) ? 'tel:' + c.phone.replace(/[^+0-9]/g, '') : '#/contact';
+
+    return {
+      go,
+      cols: (typeof window !== 'undefined' && window.innerWidth < 900) ? 'minmax(0,1fr)' : 'minmax(280px,360px) minmax(0,1fr)',
+      location: c.location, hours: c.hours,
+      channels: [
+        { label: 'Email', value: c.email, href: mailHref },
+        { label: 'Phone', value: c.phone, href: telHref },
+        { label: 'WhatsApp', value: c.whatsapp, href: '#/contact' },
+        { label: 'Registered office', value: c.address, href: '#/contact' }
+      ],
+      mapLines: ['M0 12 H100', 'M0 24 H100', 'M0 36 H100', 'M0 48 H100', 'M16 0 V60', 'M36 0 V60', 'M58 0 V60', 'M80 0 V60'],
+      fields: this.FIELDS.map((f) => {
+        const invalid = !!st.errors[f.id];
+        const border = invalid ? '#7d5411' : 'var(--color-divider)';
+        return {
+          id: f.id, label: f.label, type: f.type || 'text',
+          value: st.values[f.id] || '',
+          isArea: f.kind === 'area', isText: f.kind !== 'area',
+          invalid, error: st.errors[f.id] || '',
+          reqStyle: 'color:var(--color-accent);opacity:' + (f.req ? '1' : '0'),
+          wrapStyle: f.full ? 'grid-column:1/-1' : '',
+          inputStyle: inputBase + ';border-color:' + border,
+          areaStyle: inputBase + ';min-height:130px;resize:vertical;line-height:1.7;border-color:' + border,
+          onChange: (e) => {
+            const values = Object.assign({}, this.state.values); values[f.id] = e.target.value;
+            const errors = Object.assign({}, this.state.errors); delete errors[f.id];
+            this.setState({ values, errors });
+          }
+        };
+      }),
+      consent: st.consent,
+      toggleConsent: () => this.setState({ consent: !this.state.consent }),
+      showForm: !st.success, isSuccess: st.success, reference: st.reference,
+      reset: () => this.setState({ values: {}, errors: {}, consent: false, success: false, error: '' }),
+      submitting: st.submitting,
+      submitLabel: st.submitting ? 'Sending…' : 'Send Message',
+      submitStyle: 'display:inline-flex;align-items:center;gap:10px;padding:14px 28px;font:inherit;font-family:var(--font-heading);font-weight:600;font-size:14px;border-radius:2px;cursor:' +
+        (st.submitting ? 'wait' : 'pointer') + ';background:transparent;border:1px solid var(--color-accent);color:var(--color-accent-700);opacity:' + (st.submitting ? '.6' : '1'),
+      hasError: !!st.error, errorText: st.error,
+      submit: (e) => {
+        e.preventDefault();
+        const errors = {};
+        this.FIELDS.forEach((f) => {
+          const v = (this.state.values[f.id] || '').trim();
+          if (f.req && !v) errors[f.id] = f.label + ' is required.';
+          else if (f.type === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) errors[f.id] = 'Enter a valid email address.';
+        });
+        if (Object.keys(errors).length || !this.state.consent) {
+          this.setState({
+            errors,
+            error: Object.keys(errors).length ? 'Please correct the highlighted fields.' : 'Please give consent before sending.'
+          });
+          return;
+        }
+        this.setState({ submitting: true, error: '' });
+        setTimeout(() => {
+          this.setState({ submitting: false, success: true, reference: 'MSG-' + new Date().getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000)) });
+        }, 900);
+      },
+      routes: [
+        { t: 'Request a Quote', s: 'Pricing against a specification', url: '#/request-a-quote' },
+        { t: 'Become a Supplier', s: 'Register your company profile', url: '#/become-a-supplier' },
+        { t: 'Partner With Us', s: 'Commercial partnership routes', url: '#/partner-with-us' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section aria-labelledby="ins-title" style="background:var(--color-bg);border-bottom:1px solid var(--color-divider)">
+  <div style="max-width:1560px;margin:0 auto;padding:clamp(44px,7vw,110px) clamp(18px,3.4vw,56px) clamp(34px,4.5vw,70px)">
+    <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.55;margin-bottom:24px">
+      <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent-700)">Insights</span>
+    </nav>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,70px);align-items:end">
+      <h1 id="ins-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(36px,6vw,88px);line-height:1;letter-spacing:-.02em;margin:0;max-width:18ch">Insights</h1>
+      <p style="font-size:15px;line-height:1.82;opacity:.72;margin:0;max-width:52ch">Editorial notes on procurement practice, regional trade conditions, logistics and industrial supply — written by the desks that do the work.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Article filters" style="background:var(--color-surface);border-bottom:1px solid var(--color-divider);position:sticky;top:64px;z-index:40">
+  <div style="max-width:1560px;margin:0 auto;padding:12px clamp(18px,3.4vw,56px);display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;align-items:center">
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="9">
+      <button onClick="{{ pick }}" data-c="{{ f.name }}" aria-pressed="{{ f.active }}" style="{{ f.style }}">{{ f.name }} <span style="opacity:.5;font-variant-numeric:tabular-nums">{{ f.count }}</span></button>
+    </sc-for>
+  </div>
+</section>
+
+<section style="background:var(--color-bg);padding:clamp(40px,6vw,96px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+
+    <sc-if value="{{ hasArticles }}" hint-placeholder-val="">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:clamp(18px,2.2vw,32px)">
+        <sc-for list="{{ articles }}" as="a" hint-placeholder-count="3">
+          <article data-reveal="1" data-zoom="1" style="border:1px solid var(--color-divider);background:var(--color-bg);display:flex;flex-direction:column">
+            <span style="display:block;overflow:hidden;background:#1b1a18">
+              <img src="{{ a.cover }}" alt="{{ a.title }}" loading="lazy" style="width:100%;height:200px;object-fit:cover;filter:sepia(.19) saturate(.76)">
+            </span>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:10px;flex:1">
+              <p style="font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--color-accent);margin:0">{{ a.category }}</p>
+              <h2 style="font-family:var(--font-heading);font-weight:400;font-size:22px;line-height:1.2;margin:0">{{ a.title }}</h2>
+              <p style="font-size:13px;line-height:1.7;opacity:.7;margin:0;flex:1">{{ a.excerpt }}</p>
+              <p style="font-size:11.5px;opacity:.5;margin:0;font-variant-numeric:tabular-nums">{{ a.date }}</p>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div data-reveal="1" style="border:1px solid var(--color-divider);background:var(--color-surface);padding:clamp(28px,4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,3.4vw,60px);align-items:center;margin-bottom:clamp(30px,4vw,56px)">
+          <div>
+            <p style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent);margin:0 0 16px">Publication pending</p>
+            <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,3vw,42px);line-height:1.1;margin:0 0 14px;max-width:26ch">{{ emptyHeadline }}</h2>
+            <p style="font-size:14.5px;line-height:1.8;opacity:.72;margin:0 0 20px;max-width:50ch">We publish only what we can stand behind, so nothing is here yet. The editorial programme below is set; the first pieces are being written by the sector desks.</p>
+            <a href="#/contact" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 40%,transparent);padding-bottom:3px">Ask to be notified on publication <span data-arrow="1" style="display:inline-block">→</span></a>
+          </div>
+          <figure style="margin:0">
+            <div class="plate" style="border-width:8px">
+              <img src="https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?w=1400&q=80&auto=format&fit=crop" alt="Notebook and pen on a desk" loading="lazy" style="width:100%;height:clamp(200px,22vw,300px);object-fit:cover">
+            </div>
+          </figure>
+        </div>
+
+        <h2 data-reveal="1" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(22px,2.6vw,36px);margin:0 0 clamp(18px,2.4vw,32px)">The editorial programme</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--color-divider)">
+          <sc-for list="{{ programme }}" as="p" hint-placeholder-count="8">
+            <div data-reveal="1" style="background:var(--color-bg);padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;gap:10px;min-height:180px">
+              <span style="font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--color-accent)">{{ p.cat }}</span>
+              <h3 style="font-family:var(--font-heading);font-weight:400;font-size:20px;line-height:1.25;margin:0">{{ p.title }}</h3>
+              <p style="font-size:13px;line-height:1.7;opacity:.68;margin:0;flex:1">{{ p.note }}</p>
+              <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.42">In preparation</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ noMatch }}" hint-placeholder-val="">
+      <div style="padding:clamp(40px,6vw,90px) 0;text-align:center;border:1px solid var(--color-divider)">
+        <p style="font-family:var(--font-heading);font-size:clamp(22px,2.4vw,32px);margin:0 0 10px">Nothing filed under “{{ active }}” yet</p>
+        <p style="font-size:14px;opacity:.66;margin:0 0 20px">This category is part of the editorial programme but has no published pieces.</p>
+        <button onClick="{{ reset }}" style="font:inherit;font-size:13px;background:none;border:1px solid var(--color-accent);color:var(--color-accent-700);padding:11px 20px;border-radius:2px;cursor:pointer">View all categories</button>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section style="background:#1b1a18;color:#f3f2f2;padding:clamp(44px,6vw,96px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3.4vw,60px);align-items:center">
+    <div data-reveal="1">
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,3.2vw,46px);line-height:1.06;margin:0 0 12px;max-width:26ch">Prefer a direct answer to a market question?</h2>
+      <p style="font-size:14.5px;line-height:1.8;opacity:.7;margin:0;max-width:50ch">The desks answer sourcing and logistics questions in writing. Ask, and we will respond with what we know and what we do not.</p>
+    </div>
+    <div data-reveal="1" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#/contact" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 14%,transparent)">Contact Our Team <span data-arrow="1" style="display:inline-block">→</span></a>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  /* Article store is intentionally empty: no company news is fabricated.
+     A CMS write to UAI.articles renders the grid above automatically. */
+  state = { active: 'All', ready: !!window.UAI };
+  componentDidMount() { this._r = () => this.setState({ ready: true }); window.addEventListener('uai:ready', this._r); }
+  componentWillUnmount() { window.removeEventListener('uai:ready', this._r); }
+  renderVals() {
+    const D = window.UAI;
+    const go = (e) => { const a = e.currentTarget.getAttribute('href'); if (a) { e.preventDefault(); location.hash = a; } };
+    const cats = D ? D.insightCategories : [];
+    const all = (D && D.articles) ? D.articles : [];
+    const active = this.state.active;
+    const shown = active === 'All' ? all : all.filter((a) => a.category === active);
+
+    const chip = (name, count, isActive) => ({
+      name, count: String(count), active: isActive,
+      style: 'font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap;flex:none;padding:8px 14px;border-radius:2px;display:inline-flex;gap:7px;align-items:center;background:' +
+        (isActive ? 'color-mix(in srgb,#b68235 13%,transparent)' : 'transparent') +
+        ';border:1px solid ' + (isActive ? '#b68235' : 'var(--color-divider)') +
+        ';color:' + (isActive ? 'var(--color-accent-700)' : 'inherit') + ';transition:all .2s ease'
+    });
+
+    return {
+      go,
+      filters: [chip('All', all.length, active === 'All')].concat(
+        cats.map((c) => chip(c, all.filter((a) => a.category === c).length, active === c))
+      ),
+      active,
+      pick: (e) => this.setState({ active: e.currentTarget.getAttribute('data-c') }),
+      reset: () => this.setState({ active: 'All' }),
+      articles: shown,
+      hasArticles: shown.length > 0,
+      isEmpty: all.length === 0 && active === 'All',
+      noMatch: all.length > 0 && shown.length === 0,
+      emptyHeadline: 'The first pieces are in preparation',
+      programme: [
+        { cat: 'Procurement', title: 'Writing an enquiry that gets a usable quotation', note: 'What a supplier actually needs in an RFQ, and what slows one down.' },
+        { cat: 'Logistics', title: 'Reading a transit time honestly', note: 'Where published schedules and real arrival dates diverge, and how to plan for it.' },
+        { cat: 'Trade', title: 'Terms of sale and who carries the risk', note: 'A plain reading of the delivery terms that matter in regional trade.' },
+        { cat: 'Industry', title: 'Specifying steel to the standard, not the price', note: 'Grade, tolerance and documentation as commercial variables.' },
+        { cat: 'Oman', title: 'Why Oman sits where it does in Gulf logistics', note: 'Geography, port capacity and re-export in practical terms.' },
+        { cat: 'GCC', title: 'Cross-border distribution inside the GCC', note: 'Documentation and coordination for onward regional movement.' },
+        { cat: 'Market Insights', title: 'Lead times as the real currency', note: 'How availability, not unit price, decides most industrial purchases.' },
+        { cat: 'Company', title: 'How our desks are structured', note: 'The reasoning behind eight sectors with shared coordination.' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
