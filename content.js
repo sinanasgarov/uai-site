@@ -3,48 +3,49 @@
    (see /content-model in the handoff notes). No company facts are asserted
    beyond what the client brief supplied; unknown values are marked TBC. */
 (function () {
-  var U = function (id, w) {
-    return 'https://images.unsplash.com/photo-' + id + '?w=' + (w || 1400) + '&q=80&auto=format&fit=crop';
-  };
-
+  /* Local, self-hosted images — see IMAGES.md for provenance (each was
+     originally sourced from images.unsplash.com; download-images.js
+     fetched them into dist/images/, see dist/images/CREDITS.txt for
+     photographer credit). Site no longer depends on any external image
+     host. */
   var IMG = {
-    heroPort: U('1494412574643-ff11b0a5c1c3', 2200),
-    terminal: U('1494412651409-8963ce7935a7', 1800),
-    portCranes: U('1578575437130-527eed3abbec', 1600),
-    truck: U('1601584115197-04ecc0da31d7', 1600),
-    warehouseAisle: U('1553413077-190dd305871c', 1400),
-    warehouseWide: U('1587293852726-70cdb56c2866', 1600),
-    racking: U('1583778176476-4a8b02a64c01', 1400),
-    boxes: U('1593113598332-cd288d649433', 1400),
-    desk: U('1454165804606-c3d57bc86b40', 1400),
-    office: U('1497366216548-37526070297c', 1600),
-    meeting: U('1517048676732-d65bc937f952', 1600),
-    documents: U('1578894381163-e72c17f2d45f', 1400),
-    handshake: U('1521791136064-7986c2920216', 1600),
-    kitchen: U('1556909212-d5b604d0c90d', 1400),
-    hotelRoom: U('1615874959474-d609969a20ed', 1400),
-    interior: U('1590794056226-79ef3a8147e1', 1400),
-    switchgear: U('1621905251189-08b45d6a269e', 1600),
-    electronics: U('1591799264318-7e6ef8ddb7ea', 1400),
-    screens: U('1518770660439-4636190af475', 1400),
-    techHardware: U('1601737487795-dab272f52420', 1400),
-    plant: U('1513828583688-c52646db42da', 1600),
-    lab: U('1581093450021-4a7360e9a6b5', 1400),
-    earthworks: U('1517089596392-fb9a9033e05b', 1800),
-    productionLine: U('1567789884554-0b844b597180', 1600),
-    industrialHall: U('1565610222536-ef125c59da2e', 1600),
-    construction: U('1504307651254-35680f356dfd', 1800),
-    architecture: U('1518005020951-eccb494ad742', 1600),
-    building: U('1600585154340-be6161a56a0c', 1400),
-    welding: U('1541888946425-d81bb19240f5', 1800),
-    welder: U('1504328345606-18bbc8c9d7d1', 1400),
-    metalStructure: U('1565610222536-ef125c59da2e', 1400),
-    factory: U('1581091226825-a6a2a5aee158', 1600),
-    engineer: U('1581092160562-40aa08e78837', 1600),
-    turbines: U('1487875961445-47a00398c267', 1400),
-    solar: U('1509391366360-2e959784a276', 1400),
-    aerialYard: U('1516216628859-9bccecab13ca', 1600),
-    notebook: U('1518481612222-68bbe828ecd1', 1400)
+    heroPort: './images/hero-port-terminal.jpg',
+    terminal: './images/aerial-container-terminal.jpg',
+    portCranes: './images/gantry-cranes-vessel.jpg',
+    truck: './images/freight-truck-highway.jpg',
+    warehouseAisle: './images/warehouse-aisle-racking.jpg',
+    warehouseWide: './images/warehouse-high-bay.jpg',
+    racking: './images/cookware-pans-surface.jpg',
+    boxes: './images/workers-packing-cartons.jpg',
+    desk: './images/laptop-notebook-desk.jpg',
+    office: './images/open-plan-office.jpg',
+    meeting: './images/meeting-reviewing-documents.jpg',
+    documents: './images/commercial-documents.jpg',
+    handshake: './images/handshake-across-table.jpg',
+    kitchen: './images/domestic-kitchen-cookware.jpg',
+    hotelRoom: './images/hotel-guest-bedroom.jpg',
+    interior: './images/cast-iron-cookware-pot.jpg',
+    switchgear: './images/electrician-distribution-panel.jpg',
+    electronics: './images/processor-mainboard.jpg',
+    screens: './images/circuit-board-closeup.jpg',
+    techHardware: './images/hard-disk-assembly.jpg',
+    plant: './images/industrial-plant-pipework.jpg',
+    lab: './images/laboratory-technicians.jpg',
+    earthworks: './images/earthmoving-excavation-site.jpg',
+    productionLine: './images/robotic-arm-production-line.jpg',
+    industrialHall: './images/empty-industrial-hall.jpg',
+    construction: './images/construction-site-workers.jpg',
+    architecture: './images/modern-commercial-building.jpg',
+    building: './images/finished-building-facade.jpg',
+    welding: './images/steel-reinforcement-mat.jpg',
+    welder: './images/welder-sparks.jpg',
+    metalStructure: './images/steel-columns-roof-trusses.jpg',
+    factory: './images/manufacturing-facility-interior.jpg',
+    engineer: './images/engineer-technical-drawings.jpg',
+    turbines: './images/wind-turbines.jpg',
+    solar: './images/solar-panel-array.jpg',
+    aerialYard: './images/formwork-civil-works-site.jpg',
+    notebook: './images/notebook-pen-desk.jpg'
   };
 
   /* Alt text lives with the image, keyed identically to IMG, so a photo swap

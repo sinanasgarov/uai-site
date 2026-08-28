@@ -2,7 +2,7 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const { D, page, DIST, ROOT } = require("./build.js");
+const { D, page, DIST, ROOT, SITE } = require("./build.js");
 
 const buildHome = require("./pages/home.js");
 const buildAbout = require("./pages/about.js");
@@ -16,7 +16,6 @@ const buildLegal = require("./pages/legal.js");
 const buildContact = require("./pages/contact.js");
 const buildForms = require("./pages/forms.js");
 
-const SITE = "https://sinanasgarov.github.io/uai-site/"; // GitHub Pages base used only for canonical/og URLs — every on-page link stays relative.
 
 // ---------------------------------------------------------------------
 // Search index — same shape/scoring inputs as the original content.js
