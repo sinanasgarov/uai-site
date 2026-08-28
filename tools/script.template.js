@@ -44,27 +44,52 @@
   // full-width panel right below the header, same as the original's
   // conditionally-mounted <sc-if> block) — so visibility toggles on the
   // panel itself, not through a `.wrap.is-open .panel` descendant rule.
+  //
+  // Because the trigger button sits mid-height inside the 84px header bar
+  // while the panel starts at the header's bottom edge, there's a real
+  // vertical gap between the two: moving the cursor from button to panel
+  // crosses a strip that belongs to neither element. Two independent
+  // measures cover that gap: (1) close is debounced, so a brief moment
+  // with the cursor over neither element doesn't close the menu — only
+  // leaving *both* for the full delay does; (2) .uai-mega-wrap gets an
+  // invisible padding-bottom (see styles.css) that extends its own
+  // mouseenter/mouseleave hit-box straight down to meet the panel, so on
+  // most pointer paths the cursor never actually leaves a tracked element.
   function initMegaMenu() {
     var wrap = $("#uai-mega-wrap");
     var toggle = $("#uai-mega-toggle");
     var mega = $("#uai-mega");
     if (!wrap || !toggle || !mega) return;
+    var CLOSE_DELAY = 250;
     var hoverOpenedAt = 0;
+    var closeTimer = null;
+
+    var cancelScheduledClose = function () {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    };
     var open = function () {
       if (window.innerWidth < 1181) return;
+      cancelScheduledClose();
       wrap.classList.add("is-open");
       mega.classList.add("is-open");
       toggle.setAttribute("aria-expanded", "true");
     };
-    var close = function () {
+    var closeNow = function () {
+      cancelScheduledClose();
       wrap.classList.remove("is-open");
       mega.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
     };
+    var scheduleClose = function () {
+      cancelScheduledClose();
+      closeTimer = setTimeout(closeNow, CLOSE_DELAY);
+    };
+
     wrap.addEventListener("mouseenter", function () { hoverOpenedAt = Date.now(); open(); });
-    wrap.addEventListener("mouseleave", close);
+    wrap.addEventListener("mouseleave", scheduleClose);
     mega.addEventListener("mouseenter", open);
-    mega.addEventListener("mouseleave", close);
+    mega.addEventListener("mouseleave", scheduleClose);
+
     toggle.addEventListener("click", function () {
       // A physical mouse click is always preceded by its own mouseenter on
       // `wrap`, which may have *just* opened the menu — treat a click that
@@ -73,12 +98,13 @@
       // the menu it just opened. A later click (or one with no preceding
       // hover, e.g. keyboard/touch) still toggles normally.
       if (mega.classList.contains("is-open") && Date.now() - hoverOpenedAt < 400) return;
-      mega.classList.contains("is-open") ? close() : open();
+      mega.classList.contains("is-open") ? closeNow() : open();
     });
     document.addEventListener("click", function (e) {
-      if (!wrap.contains(e.target) && !mega.contains(e.target)) close();
+      if (!wrap.contains(e.target) && !mega.contains(e.target)) closeNow();
     });
-    window._uaiCloseMega = close;
+    // Escape is handled centrally by initEscapeKey() via window._uaiCloseMega.
+    window._uaiCloseMega = closeNow;
   }
 
   // ---- mobile menu ----------------------------------------------------
