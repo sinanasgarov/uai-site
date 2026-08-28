@@ -66,7 +66,7 @@ function build() {
 </section>
 
 <section style="background:var(--color-bg);padding:clamp(36px,5.5vw,90px) 0">
-  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:clamp(26px,3.4vw,64px);align-items:start">
+  <div class="uai-sidebar-layout" style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:clamp(26px,3.4vw,64px);align-items:start">
 
     <aside>
       <div style="border:1px solid var(--color-divider);background:var(--color-surface)">

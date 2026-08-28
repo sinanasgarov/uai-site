@@ -106,7 +106,7 @@ function build() {
 </section>
 
 <section aria-label="Catalogue browser" style="background:var(--color-bg);padding:clamp(32px,5vw,72px) 0 clamp(46px,6.5vw,104px)">
-  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:clamp(24px,3vw,52px);align-items:start">
+  <div class="uai-sidebar-layout" style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:clamp(24px,3vw,52px);align-items:start">
 
     <aside aria-label="Sectors" style="position:sticky;top:96px;border:1px solid var(--color-divider);background:var(--color-surface)">
       <p style="font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--color-accent);margin:0;padding:16px 18px 12px;border-bottom:1px solid var(--color-divider)">Browse by sector</p>
