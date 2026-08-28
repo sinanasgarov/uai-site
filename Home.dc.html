@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section aria-label="Introduction" style="position:relative;min-height:min(92vh,900px);display:flex;flex-direction:column;justify-content:flex-end;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+  <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=2200&q=80&auto=format&fit=crop" alt="Container terminal at a commercial seaport" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46;filter:sepia(.18) saturate(.72) contrast(1.06);animation:uai-drift 24s ease-in-out infinite alternate">
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,#1b1a18 4%,color-mix(in srgb,#1b1a18 74%,transparent) 42%,color-mix(in srgb,#1b1a18 32%,transparent))"></div>
+  <div style="position:relative;width:100%;max-width:1560px;margin:auto auto 0;padding:clamp(96px,14vh,180px) clamp(18px,3.4vw,56px) clamp(30px,4vw,54px)">
+    <p style="display:flex;align-items:center;gap:14px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--color-accent);margin:0 0 clamp(18px,2.4vw,30px);animation:uai-fade .8s ease both">
+      <span style="width:46px;height:1px;background:var(--color-accent);display:inline-block"></span>
+      Muscat, Sultanate of Oman
+    </p>
+    <h1 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(40px,7.6vw,116px);line-height:.98;letter-spacing:-.02em;margin:0 0 clamp(20px,2.6vw,34px);max-width:19ch;text-wrap:balance">
+      <span style="display:block;animation:uai-fade .9s ease .05s both">Building Connections.</span>
+      <span style="display:block;animation:uai-fade .9s ease .18s both">Moving Industries.</span>
+      <span style="display:block;color:var(--color-accent);animation:uai-fade .9s ease .31s both">Creating Value.</span>
+    </h1>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(22px,3vw,56px);align-items:end;animation:uai-fade 1s ease .42s both">
+      <p style="font-size:clamp(14.5px,1.16vw,17px);line-height:1.78;opacity:.78;margin:0;max-width:60ch">United Assets Investments is an Oman-based diversified business company connecting international markets, suppliers and commercial opportunities across trade, logistics, industrial supply and strategic business sectors.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start">
+        <a href="#/business-sectors" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-weight:600;font-size:14px;border-radius:2px;white-space:nowrap" style-hover="background:color-mix(in srgb,#b68235 14%,transparent)">Explore Our Business <span data-arrow="1" style="display:inline-block">→</span></a>
+        <a href="#/request-a-quote" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border:1px solid color-mix(in srgb,#f3f2f2 30%,transparent);color:#f3f2f2;text-decoration:none;font-family:var(--font-heading);font-weight:600;font-size:14px;border-radius:2px;white-space:nowrap" style-hover="border-color:#f3f2f2">Request a Quote</a>
+      </div>
+    </div>
+  </div>
+  <div style="position:relative;width:100%;border-top:1px solid color-mix(in srgb,#f3f2f2 16%,transparent)">
+    <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+      <sc-for list="{{ heroStrip }}" as="h" hint-placeholder-count="4">
+        <div style="padding:16px 0;border-left:1px solid color-mix(in srgb,#f3f2f2 12%,transparent);padding-left:16px">
+          <p style="font-family:var(--font-heading);font-size:15px;margin:0 0 2px">{{ h.t }}</p>
+          <p style="font-size:11px;opacity:.5;margin:0;letter-spacing:.04em">{{ h.s }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-intro" style="background:var(--color-bg);padding:clamp(56px,8vw,130px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:clamp(32px,5vw,86px);align-items:start">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 20px">Who we are</p>
+      <h2 id="uai-intro" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(32px,4.2vw,68px);line-height:1.04;letter-spacing:-.015em;margin:0 0 clamp(20px,2.4vw,30px);max-width:16ch">Built Around Opportunity</h2>
+      <p style="font-size:15.5px;line-height:1.85;margin:0 0 18px;text-align:justify;hyphens:auto;max-width:56ch">United Assets Investments brings together a diversified range of business activities designed to connect commercial opportunities across regional and international markets. The group is structured so that a client with a mixed requirement — materials, equipment, freight and the paperwork around them — can deal with one commercial party rather than five.</p>
+      <p style="font-size:15.5px;line-height:1.85;margin:0 0 28px;text-align:justify;hyphens:auto;max-width:56ch;opacity:.82">Our approach combines strategic sourcing, trading, logistics coordination, industrial supply and business development. Oman is our base and our advantage: a trading position on the Arabian Sea with direct routes to the Gulf, East Africa and South Asia.</p>
+      <a href="#/about" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 40%,transparent);padding-bottom:3px;white-space:nowrap">Read more <span data-arrow="1" style="display:inline-block">→</span></a>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--color-divider);margin-top:clamp(34px,4vw,52px)">
+        <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+          <div style="background:var(--color-bg);padding:18px 16px 20px">
+            <p style="font-family:var(--font-heading);font-size:17px;margin:0 0 5px">{{ p.t }}</p>
+            <p style="font-size:11.5px;line-height:1.55;opacity:.6;margin:0">{{ p.s }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <figure data-reveal="1" style="margin:0">
+      <div class="plate" style="border-width:8px">
+        <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1800&q=80&auto=format&fit=crop" alt="Aerial view of a container terminal with stacked freight containers" style="width:100%;height:clamp(320px,50vw,660px);object-fit:cover">
+      </div>
+      <figcaption style="font-size:11px;margin-top:10px;opacity:.55;letter-spacing:.04em">Sea freight remains the backbone of regional industrial supply.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section aria-labelledby="uai-sectors" style="background:var(--color-surface);padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(18px,3vw,60px);align-items:end;padding-bottom:clamp(30px,4vw,56px);border-bottom:1px solid var(--color-divider)">
+      <div>
+        <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Eight sectors</p>
+        <h2 id="uai-sectors" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(32px,4.4vw,72px);line-height:1.03;letter-spacing:-.015em;margin:0">Our Business Sectors</h2>
+      </div>
+      <p style="font-size:15px;line-height:1.8;opacity:.72;margin:0;max-width:46ch">A diversified platform built to serve multiple industries and commercial requirements — each sector run as its own commercial desk, with shared logistics and administration behind it.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:1px;background:var(--color-divider)">
+      <sc-for list="{{ sectorCards }}" as="s" hint-placeholder-count="8">
+        <a data-reveal="1" data-zoom="1" href="{{ s.url }}" onClick="{{ go }}" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:clamp(300px,30vw,430px);background:#1b1a18;color:#f3f2f2;text-decoration:none;overflow:hidden">
+          <img src="{{ s.img }}" alt="{{ s.alt }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;filter:sepia(.16) saturate(.72)">
+          <span style="position:absolute;inset:0;background:linear-gradient(to top,color-mix(in srgb,#1b1a18 92%,transparent) 8%,color-mix(in srgb,#1b1a18 42%,transparent) 62%,transparent)"></span>
+          <span style="position:relative;padding:clamp(20px,2vw,30px)">
+            <span style="display:block;font-size:11px;letter-spacing:.2em;color:var(--color-accent);font-variant-numeric:tabular-nums;margin-bottom:12px">{{ s.num }}</span>
+            <span style="display:block;font-family:var(--font-heading);font-size:clamp(21px,1.7vw,27px);line-height:1.15;margin-bottom:9px">{{ s.title }}</span>
+            <span style="display:block;font-size:12.5px;line-height:1.65;opacity:.7;max-width:34ch;margin-bottom:16px">{{ s.blurb }}</span>
+            <span style="display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent)">Explore Sector <span data-arrow="1" style="display:inline-block">→</span></span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-what" style="background:#1b1a18;color:#f3f2f2;padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="max-width:60ch;margin-bottom:clamp(34px,4.5vw,64px)">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">What we do</p>
+      <h2 id="uai-what" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.05;letter-spacing:-.015em;margin:0 0 20px">Four functions, one commercial file</h2>
+      <p style="font-size:15px;line-height:1.8;opacity:.68;margin:0">Most requirements need more than one of these. We keep them under a single point of accountability so the handovers do not become the client's problem.</p>
+    </div>
+    <div style="display:grid;gap:1px;background:color-mix(in srgb,#f3f2f2 14%,transparent)">
+      <sc-for list="{{ functions }}" as="f" hint-placeholder-count="4">
+        <div data-reveal="1" style="background:#1b1a18;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(14px,2.5vw,44px);padding:clamp(22px,2.6vw,38px) 0;align-items:baseline">
+          <div style="display:flex;gap:18px;align-items:baseline">
+            <span style="font-size:11.5px;color:var(--color-accent);font-variant-numeric:tabular-nums">{{ f.num }}</span>
+            <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(22px,2.2vw,34px);margin:0;line-height:1.15">{{ f.t }}</h3>
+          </div>
+          <p style="font-size:14px;line-height:1.8;opacity:.7;margin:0;max-width:52ch">{{ f.s }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ f.tags }}" as="t" hint-placeholder-count="3">
+              <span style="font-size:11px;letter-spacing:.06em;border:1px solid color-mix(in srgb,#f3f2f2 22%,transparent);padding:5px 11px;border-radius:2px;opacity:.75">{{ t }}</span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-solutions" style="background:var(--color-bg);padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(28px,3.5vw,50px)">
+      <div>
+        <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Strategic solutions</p>
+        <h2 id="uai-solutions" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.04;margin:0;max-width:22ch">How we engage with a requirement</h2>
+      </div>
+      <a href="#/solutions" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 40%,transparent);padding-bottom:3px">All solutions <span data-arrow="1" style="display:inline-block">→</span></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:1px;background:var(--color-divider)">
+      <sc-for list="{{ solutionCards }}" as="s" hint-placeholder-count="7">
+        <a data-reveal="1" href="#/solutions" onClick="{{ go }}" style="background:var(--color-bg);padding:clamp(20px,2vw,30px);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;min-height:200px" style-hover="background:color-mix(in srgb,#b68235 7%,transparent)">
+          <span style="font-family:var(--font-heading);font-size:19px;line-height:1.2">{{ s.name }}</span>
+          <span style="font-size:13px;line-height:1.7;opacity:.7;flex:1">{{ s.short }}</span>
+          <span style="display:flex;gap:7px;flex-wrap:wrap;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent)">
+            <sc-for list="{{ s.process }}" as="p" hint-placeholder-count="4">
+              <span>{{ p }}</span>
+            </sc-for>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-industries" style="background:var(--color-surface);padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(28px,3.5vw,50px)">
+      <div>
+        <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Industries</p>
+        <h2 id="uai-industries" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.04;margin:0">Where our supply lands</h2>
+      </div>
+      <a href="#/industries" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 40%,transparent);padding-bottom:3px">All industries <span data-arrow="1" style="display:inline-block">→</span></a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:clamp(12px,1.4vw,20px)">
+      <sc-for list="{{ industryCards }}" as="i" hint-placeholder-count="8">
+        <a data-reveal="1" data-zoom="1" href="{{ i.url }}" onClick="{{ go }}" style="text-decoration:none;color:inherit;display:block">
+          <span style="display:block;overflow:hidden;background:#1b1a18;border:6px solid var(--color-bg);outline:1px solid var(--color-divider)">
+            <img src="{{ i.img }}" alt="{{ i.alt }}" loading="lazy" style="width:100%;height:clamp(140px,13vw,190px);object-fit:cover;filter:sepia(.2) saturate(.78) contrast(1.04)">
+          </span>
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 2px 0">
+            <span style="font-family:var(--font-heading);font-size:17px">{{ i.name }}</span>
+            <span data-arrow="1" style="color:var(--color-accent);font-size:13px;display:inline-block">→</span>
+          </span>
+          <span style="display:block;font-size:12px;line-height:1.6;opacity:.62;padding:5px 2px 0">{{ i.text }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-reach" style="background:#1b1a18;color:#f3f2f2;padding:clamp(56px,8vw,120px) 0;overflow:hidden">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(30px,4vw,70px);align-items:center">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Global reach</p>
+      <h2 id="uai-reach" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.04;margin:0 0 22px">Oman. Connected to the World.</h2>
+      <p style="font-size:15px;line-height:1.82;opacity:.72;margin:0 0 18px;max-width:52ch">Oman sits outside the Strait of Hormuz with deep-water ports on open sea routes — a practical advantage for cargo moving between Asia, the Gulf, East Africa and Europe.</p>
+      <p style="font-size:13.5px;line-height:1.75;opacity:.5;margin:0 0 28px;max-width:52ch">The markets shown are commercial corridors we source and supply through. They do not represent branch offices or owned facilities.</p>
+      <a href="#/global-reach" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 14%,transparent)">See our market corridors <span data-arrow="1" style="display:inline-block">→</span></a>
+    </div>
+    <div data-reveal="1" style="position:relative">
+      <svg viewBox="0 0 100 62" style="width:100%;height:auto;overflow:visible" role="img" aria-label="Schematic diagram of trade corridors radiating from Oman toward GCC, Asia, Europe and Africa">
+        <sc-for list="{{ arcs }}" as="a" hint-placeholder-count="5">
+          <path d="{{ a.d }}" fill="none" stroke="#b68235" stroke-width=".35" stroke-dasharray="2.4 2.4" opacity=".75" style="animation:uai-dash 26s linear infinite"></path>
+        </sc-for>
+        <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
+          <circle cx="{{ n.x }}" cy="{{ n.y }}" r="{{ n.r }}" fill="{{ n.fill }}" stroke="#b68235" stroke-width=".3"></circle>
+        </sc-for>
+      </svg>
+      <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
+        <span style="{{ n.labelStyle }}">{{ n.name }}</span>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-process" style="background:var(--color-bg);padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="max-width:56ch;margin-bottom:clamp(30px,4vw,58px)">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">How we work</p>
+      <h2 id="uai-process" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.04;margin:0">From requirement to repeat business</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:0">
+      <sc-for list="{{ process }}" as="p" hint-placeholder-count="6">
+        <div data-reveal="1" style="border-top:1px solid var(--color-divider);padding:clamp(20px,2.2vw,32px) clamp(18px,2vw,30px) clamp(26px,3vw,44px) 0;position:relative">
+          <span style="position:absolute;top:-1px;left:0;width:34px;height:1px;background:var(--color-accent)"></span>
+          <p style="font-size:11.5px;color:var(--color-accent);font-variant-numeric:tabular-nums;letter-spacing:.16em;margin:0 0 14px">{{ p.num }}</p>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(22px,2vw,30px);margin:0 0 10px">{{ p.name }}</h3>
+          <p style="font-size:13.5px;line-height:1.75;opacity:.68;margin:0;max-width:34ch">{{ p.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-why" style="background:var(--color-surface);padding:clamp(56px,8vw,120px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,60px);align-items:end;margin-bottom:clamp(28px,3.5vw,50px)">
+      <h2 id="uai-why" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(32px,4.4vw,70px);line-height:1.03;margin:0">Why United Assets?</h2>
+      <p style="font-size:14.5px;line-height:1.8;opacity:.7;margin:0;max-width:46ch">Six reasons clients give when they come back — stated plainly, without the superlatives.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:clamp(14px,1.6vw,24px)">
+      <sc-for list="{{ why }}" as="w" hint-placeholder-count="6">
+        <div data-reveal="1" style="border:1px solid var(--color-divider);border-radius:2px;padding:clamp(20px,2.2vw,30px);background:var(--color-bg);display:flex;flex-direction:column;gap:10px" style-hover="border-color:color-mix(in srgb,#b68235 55%,transparent)">
+          <span style="width:7px;height:7px;background:var(--color-accent);display:block;transform:rotate(45deg);margin-bottom:6px"></span>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:22px;margin:0">{{ w.name }}</h3>
+          <p style="font-size:13.5px;line-height:1.75;opacity:.7;margin:0">{{ w.text }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-finder" style="background:var(--color-bg);padding:clamp(56px,8vw,120px) 0;border-top:1px solid var(--color-divider)">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="text-align:center;max-width:52ch;margin:0 auto clamp(28px,3.5vw,48px)">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Smart business finder</p>
+      <h2 id="uai-finder" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,64px);line-height:1.05;margin:0 0 14px">What Are You Looking For?</h2>
+      <p style="font-size:14.5px;line-height:1.8;opacity:.7;margin:0">Pick a requirement and we'll point you at the right desk.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:1000px;margin:0 auto">
+      <sc-for list="{{ finderOptions }}" as="f" hint-placeholder-count="8">
+        <button onClick="{{ pickFinder }}" data-slug="{{ f.slug }}" aria-pressed="{{ f.active }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{ finderResult }}" hint-placeholder-val="">
+      <div style="max-width:1000px;margin:clamp(24px,3vw,40px) auto 0;border:1px solid var(--color-divider);background:var(--color-surface);animation:uai-fade .4s ease both;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div style="padding:clamp(22px,2.6vw,38px)">
+          <p style="font-size:11px;letter-spacing:.2em;color:var(--color-accent);font-variant-numeric:tabular-nums;margin:0 0 12px">{{ finderNum }} — Recommended desk</p>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,2.6vw,38px);line-height:1.1;margin:0 0 12px">{{ finderTitle }}</h3>
+          <p style="font-size:14px;line-height:1.78;opacity:.72;margin:0 0 22px;max-width:44ch">{{ finderBlurb }}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <a href="{{ finderUrl }}" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:13.5px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 12%,transparent)">Open sector <span data-arrow="1" style="display:inline-block">→</span></a>
+            <a href="#/request-a-quote" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:12px 20px;border:1px solid var(--color-divider);color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:13.5px;border-radius:2px" style-hover="border-color:var(--color-text)">Request a Quote</a>
+          </div>
+        </div>
+        <div style="min-height:190px;background:#1b1a18;overflow:hidden">
+          <img src="{{ finderImg }}" alt="{{ finderTitle }}" style="width:100%;height:100%;min-height:190px;object-fit:cover;opacity:.85;filter:sepia(.18) saturate(.75)">
+        </div>
+      </div>
+    </sc-if>
+  </div>
+</section>
+
+<section aria-label="Business enquiry" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+  <img src="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=1800&q=80&auto=format&fit=crop" alt="Earthmoving equipment working on a construction site" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;filter:sepia(.2) saturate(.7)">
+  <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(56px,8vw,124px) clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,64px);align-items:center">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Business enquiry</p>
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.04;margin:0 0 18px;max-width:22ch">Send us the specification. We'll come back with the route.</h2>
+      <p style="font-size:15px;line-height:1.8;opacity:.72;margin:0;max-width:50ch">Quantities, drawings, standards, destination and required date — whatever you have. If it is a single line item or a full project take-off, the process is the same.</p>
+    </div>
+    <div data-reveal="1" style="display:grid;gap:1px;background:color-mix(in srgb,#f3f2f2 16%,transparent)">
+      <sc-for list="{{ enquiryRoutes }}" as="e" hint-placeholder-count="3">
+        <a href="{{ e.url }}" onClick="{{ go }}" style="background:#1b1a18;padding:clamp(18px,2vw,26px);text-decoration:none;color:inherit;display:flex;align-items:center;justify-content:space-between;gap:18px" style-hover="background:#242220">
+          <span>
+            <span style="display:block;font-family:var(--font-heading);font-size:21px;margin-bottom:4px">{{ e.t }}</span>
+            <span style="display:block;font-size:12.5px;opacity:.6">{{ e.s }}</span>
+          </span>
+          <span data-arrow="1" style="color:var(--color-accent);font-size:16px;display:inline-block">→</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="uai-insights" style="background:var(--color-bg);padding:clamp(56px,8vw,110px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,70px);align-items:start">
+    <div data-reveal="1">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Insights</p>
+      <h2 id="uai-insights" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(30px,4.2vw,62px);line-height:1.04;margin:0 0 18px">Notes on trade, logistics and supply</h2>
+      <p style="font-size:14.5px;line-height:1.8;opacity:.7;margin:0 0 22px;max-width:48ch">Our editorial programme covers procurement practice, regional trade conditions and industrial supply. The first pieces are in preparation — the categories below show what we will publish.</p>
+      <a href="#/insights" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--color-accent-700);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 40%,transparent);padding-bottom:3px">Go to Insights <span data-arrow="1" style="display:inline-block">→</span></a>
+    </div>
+    <div data-reveal="1" style="display:flex;flex-wrap:wrap;gap:9px">
+      <sc-for list="{{ insightCategories }}" as="c" hint-placeholder-count="8">
+        <a href="#/insights" onClick="{{ go }}" style="border:1px solid var(--color-divider);padding:9px 16px;border-radius:2px;font-size:13px;text-decoration:none;color:inherit" style-hover="border-color:var(--color-accent);color:var(--color-accent)">{{ c }}</a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Contact" style="background:var(--color-surface);border-top:1px solid var(--color-divider);padding:clamp(48px,6vw,96px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,50px);align-items:center;justify-content:space-between">
+    <div data-reveal="1">
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.6vw,56px);line-height:1.05;margin:0 0 10px">Let's start a conversation</h2>
+      <p style="font-size:14.5px;line-height:1.75;opacity:.7;margin:0;max-width:48ch">{{ contactLine }}</p>
+    </div>
+    <div data-reveal="1" style="display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#/contact" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 12%,transparent)">Contact Our Team <span data-arrow="1" style="display:inline-block">→</span></a>
+      <a href="#/become-a-supplier" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border:1px solid var(--color-divider);color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="border-color:var(--color-text)">Become a Supplier</a>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { finder: '', ready: !!window.UAI };
+
+  componentDidMount() {
+    this._ready = () => this.setState({ ready: true });
+    window.addEventListener('uai:ready', this._ready);
+  }
+  componentWillUnmount() { window.removeEventListener('uai:ready', this._ready); }
+
+  renderVals() {
+    const D = window.UAI;
+    const go = (e) => {
+      const a = e.currentTarget.getAttribute('href');
+      if (a) { e.preventDefault(); location.hash = a; }
+    };
+    if (!D) return { go, heroStrip: [], pillars: [], sectorCards: [], functions: [], solutionCards: [], industryCards: [], process: [], why: [], finderOptions: [], insightCategories: [], enquiryRoutes: [], arcs: [], nodes: [] };
+
+    /* Alt text is resolved from the image URL (content.js), so it always
+       describes the photograph actually rendered. */
+    const altOf = (url) => D.altFor(url) || '';
+
+    const nodes = D.regions.map((r) => ({
+      name: r.name, x: r.x, y: r.y,
+      r: r.home ? 1.9 : 1.2,
+      fill: r.home ? '#b68235' : 'color-mix(in srgb,#b68235 30%,transparent)',
+      labelStyle: 'position:absolute;left:' + r.x + '%;top:' + r.y + '%;transform:translate(-50%,-190%);font-size:' +
+        (r.home ? '13px' : '11.5px') + ';letter-spacing:.12em;text-transform:uppercase;color:' +
+        (r.home ? '#b68235' : 'color-mix(in srgb,#f3f2f2 72%,transparent)') + ';white-space:nowrap;pointer-events:none'
+    }));
+    const home = D.regions.filter((r) => r.home)[0];
+    const arcs = D.regions.filter((r) => !r.home).map((r) => {
+      const mx = (home.x + r.x) / 2, my = (home.y + r.y) / 2 - 12;
+      return { d: 'M' + home.x + ' ' + home.y + ' Q' + mx + ' ' + my + ' ' + r.x + ' ' + r.y };
+    });
+
+    const sel = this.state.finder;
+    const chosen = sel ? D.sectorBySlug(sel) : null;
+
+    return {
+      go,
+      heroStrip: [
+        { t: 'Oman-based', s: 'Muscat commercial base' },
+        { t: 'Eight sectors', s: 'Trade, logistics, industry' },
+        { t: 'International', s: 'Cross-border sourcing' },
+        { t: 'B2B focused', s: 'Business-to-business only' }
+      ],
+      pillars: [
+        { t: 'Oman-based', s: 'Registered and operating from Muscat.' },
+        { t: 'Multi-sector', s: 'Eight commercial desks under one group.' },
+        { t: 'International outlook', s: 'Sourcing beyond the home market.' },
+        { t: 'B2B focused', s: 'Companies, projects and institutions.' }
+      ],
+      sectorCards: D.sectors.map((s) => ({
+        num: s.num, title: s.title, blurb: s.blurb, img: s.card,
+        alt: altOf(s.card) || s.title, url: '#/business-sectors/' + s.slug
+      })),
+      functions: [
+        { num: '01', t: 'Source', s: 'Find products and qualified suppliers against a real specification, then bring back comparable options.', tags: ['Supplier mapping', 'Specification review', 'Offer comparison'] },
+        { num: '02', t: 'Trade', s: 'Act as the commercial party between international supply and regional demand, on agreed terms.', tags: ['Negotiation', 'Contracting', 'Documentation'] },
+        { num: '03', t: 'Move', s: 'Coordinate freight, customs formalities, storage and inland delivery to the receiving point.', tags: ['Freight', 'Customs', 'Warehousing'] },
+        { num: '04', t: 'Support', s: 'Carry the administration around the transaction and keep the client informed as it progresses.', tags: ['Reporting', 'Follow-up', 'Process'] }
+      ],
+      solutionCards: D.solutions.map((s) => ({ name: s.name, short: s.short, process: s.process.slice(0, 3) })),
+      industryCards: D.industries.slice(0, 8).map((i) => ({
+        name: i.name, text: i.text, img: i.img, alt: altOf(i.img) || (i.name + ' industry imagery'), url: '#/industries/' + i.slug
+      })),
+      process: D.process,
+      why: D.why,
+      arcs, nodes,
+      finderOptions: D.finder.map((f) => ({
+        label: f.label, slug: f.slug, active: sel === f.slug,
+        style: 'font:inherit;font-size:13.5px;cursor:pointer;padding:12px 20px;border-radius:2px;background:' +
+          (sel === f.slug ? 'color-mix(in srgb,#b68235 14%,transparent)' : 'transparent') +
+          ';border:1px solid ' + (sel === f.slug ? '#b68235' : 'var(--color-divider)') +
+          ';color:' + (sel === f.slug ? 'var(--color-accent-700)' : 'inherit') + ';transition:all .25s ease'
+      })),
+      pickFinder: (e) => this.setState({ finder: e.currentTarget.getAttribute('data-slug') }),
+      finderResult: !!chosen,
+      finderNum: chosen ? chosen.num : '',
+      finderTitle: chosen ? chosen.title : '',
+      finderBlurb: chosen ? chosen.blurb : '',
+      finderImg: chosen ? chosen.hero : '',
+      finderUrl: chosen ? '#/business-sectors/' + chosen.slug : '#/business-sectors',
+      insightCategories: D.insightCategories,
+      enquiryRoutes: [
+        { t: 'Request a Quote', s: 'Specification, quantity, destination', url: '#/request-a-quote' },
+        { t: 'Become a Supplier', s: 'Manufacturers, distributors, traders', url: '#/become-a-supplier' },
+        { t: 'Partner With Us', s: 'Commercial and logistics partnerships', url: '#/partner-with-us' }
+      ],
+      contactLine: D.contact.location + ' · ' + D.contact.hours
+    };
+  }
+}
+
+</script>
+</body>
+</html>

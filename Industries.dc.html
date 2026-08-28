@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ isIndex }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section aria-labelledby="in-title" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80&auto=format&fit=crop" alt="Industrial yard from above" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3;filter:sepia(.2) saturate(.7)">
+      <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(64px,10vw,150px) clamp(18px,3.4vw,56px) clamp(44px,6vw,88px)">
+        <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:24px">
+          <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent)">Industries</span>
+        </nav>
+        <h1 id="in-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(36px,6.4vw,94px);line-height:1;letter-spacing:-.02em;margin:0 0 20px;max-width:18ch">Industries We Serve</h1>
+        <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.8;opacity:.76;margin:0;max-width:62ch">Eleven client contexts, each with a different definition of “on time”. The sectors we draw on change; the discipline does not.</p>
+      </div>
+    </section>
+
+    <section style="background:var(--color-bg);padding:clamp(44px,6vw,96px) 0">
+      <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,28px)">
+        <sc-for list="{{ industries }}" as="i" hint-placeholder-count="11">
+          <a data-reveal="1" data-zoom="1" href="{{ i.url }}" onClick="{{ go }}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;border:1px solid var(--color-divider);background:var(--color-bg)" style-hover="border-color:color-mix(in srgb,#b68235 55%,transparent)">
+            <span style="display:block;overflow:hidden;background:#1b1a18">
+              <img src="{{ i.img }}" alt="{{ i.alt }}" loading="lazy" style="width:100%;height:clamp(170px,17vw,230px);object-fit:cover;filter:sepia(.19) saturate(.76)">
+            </span>
+            <span style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:9px;flex:1">
+              <span style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+                <span style="font-family:var(--font-heading);font-size:21px">{{ i.name }}</span>
+                <span data-arrow="1" style="color:var(--color-accent);font-size:13px;display:inline-block">→</span>
+              </span>
+              <span style="font-size:13px;line-height:1.7;opacity:.7;flex:1">{{ i.text }}</span>
+              <span style="display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid var(--color-divider)">
+                <sc-for list="{{ i.tags }}" as="t" hint-placeholder-count="3">
+                  <span style="font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-accent-700);opacity:.9">{{ t }}</span>
+                </sc-for>
+              </span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isDetail }}" hint-placeholder-val="">
+  <div>
+    <section aria-labelledby="id-title" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden;min-height:clamp(360px,52vh,600px);display:flex;align-items:flex-end">
+      <img src="{{ img }}" alt="{{ alt }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;filter:sepia(.18) saturate(.72);animation:uai-drift 26s ease-in-out infinite alternate">
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,#1b1a18 4%,color-mix(in srgb,#1b1a18 66%,transparent) 52%,color-mix(in srgb,#1b1a18 24%,transparent))"></div>
+      <div style="position:relative;width:100%;max-width:1560px;margin:0 auto;padding:clamp(76px,11vh,140px) clamp(18px,3.4vw,56px) clamp(32px,4vw,60px)">
+        <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:22px">
+          <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span>
+          <a href="#/industries" onClick="{{ go }}" style="color:inherit;text-decoration:none">Industries</a> <span style="opacity:.5">/</span>
+          <span style="color:var(--color-accent)">{{ name }}</span>
+        </nav>
+        <h1 id="id-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(34px,6vw,88px);line-height:1;letter-spacing:-.02em;margin:0 0 18px">{{ name }}</h1>
+        <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.8;opacity:.78;margin:0;max-width:58ch">{{ text }}</p>
+      </div>
+    </section>
+
+    <section style="background:var(--color-bg);padding:clamp(46px,6.5vw,104px) 0">
+      <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+        <div data-reveal="1" style="max-width:56ch;margin-bottom:clamp(26px,3.4vw,46px)">
+          <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Sectors engaged</p>
+          <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3.4vw,50px);line-height:1.06;margin:0">Which desks serve this industry</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:1px;background:var(--color-divider)">
+          <sc-for list="{{ related }}" as="r" hint-placeholder-count="3">
+            <a data-reveal="1" href="{{ r.url }}" onClick="{{ go }}" style="background:var(--color-bg);padding:clamp(20px,2.2vw,32px);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:10px;min-height:180px" style-hover="background:color-mix(in srgb,#b68235 7%,transparent)">
+              <span style="font-size:11px;color:var(--color-accent);font-variant-numeric:tabular-nums;letter-spacing:.18em">{{ r.num }}</span>
+              <span style="font-family:var(--font-heading);font-size:22px;line-height:1.2">{{ r.title }}</span>
+              <span style="font-size:13px;line-height:1.7;opacity:.7;flex:1">{{ r.blurb }}</span>
+              <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);display:inline-flex;gap:8px;align-items:center">Open sector <span data-arrow="1" style="display:inline-block">→</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--color-surface);border-top:1px solid var(--color-divider);padding:clamp(44px,6vw,96px) 0">
+      <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,3.4vw,56px);align-items:center">
+        <div data-reveal="1">
+          <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,3.2vw,46px);line-height:1.06;margin:0 0 12px;max-width:26ch">Working in {{ name }}?</h2>
+          <p style="font-size:14.5px;line-height:1.8;opacity:.72;margin:0;max-width:50ch">Tell us the requirement and the date it has to be on site. We will confirm what is realistic before quoting.</p>
+        </div>
+        <div data-reveal="1" style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#/request-a-quote" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border:1px solid var(--color-accent);color:var(--color-accent-700);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 12%,transparent)">Request a Quote <span data-arrow="1" style="display:inline-block">→</span></a>
+          <a href="#/industries" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border:1px solid var(--color-divider);color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="border-color:var(--color-text)">All industries</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;slug&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { ready: !!window.UAI };
+  componentDidMount() { this._r = () => this.setState({ ready: true }); window.addEventListener('uai:ready', this._r); }
+  componentWillUnmount() { window.removeEventListener('uai:ready', this._r); }
+  renderVals() {
+    const D = window.UAI;
+    const go = (e) => { const a = e.currentTarget.getAttribute('href'); if (a) { e.preventDefault(); location.hash = a; } };
+    if (!D) return { go, isIndex: true, isDetail: false, industries: [], related: [] };
+    const slug = this.props.slug || '';
+    const ind = slug ? D.industries.filter((i) => i.slug === slug)[0] : null;
+    const name = (s) => { const x = D.sectorBySlug(s); return x ? x : null; };
+    if (!ind) {
+      return {
+        go, isIndex: true, isDetail: false,
+        industries: D.industries.map((i) => ({
+          name: i.name, text: i.text, img: i.img, alt: (D.altFor(i.img) || i.name + ' industry imagery'), url: '#/industries/' + i.slug,
+          tags: i.sectors.map((s) => { const x = name(s); return x ? x.nav : s; }).slice(0, 3)
+        })),
+        related: []
+      };
+    }
+    return {
+      go, isIndex: false, isDetail: true,
+      name: ind.name, text: ind.text, img: ind.img, alt: (D.altFor(ind.img) || ind.name + ' industry imagery'),
+      industries: [],
+      related: ind.sectors.map((s) => { const x = name(s); return x ? { num: x.num, title: x.title, blurb: x.blurb, url: '#/business-sectors/' + x.slug } : null; }).filter(Boolean)
+    };
+  }
+}
+
+</script>
+</body>
+</html>

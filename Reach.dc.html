@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section aria-labelledby="gr-title" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+  <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1800&q=80&auto=format&fit=crop" alt="Container terminal seen from above" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;filter:sepia(.2) saturate(.7)">
+  <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(64px,10vw,150px) clamp(18px,3.4vw,56px) clamp(40px,5vw,80px)">
+    <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:24px">
+      <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent)">Global Reach</span>
+    </nav>
+    <h1 id="gr-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(36px,6.4vw,94px);line-height:1;letter-spacing:-.02em;margin:0 0 20px;max-width:20ch">Oman. Connected to the World.</h1>
+    <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.8;opacity:.76;margin:0;max-width:62ch">Our commercial base sits on the Arabian Sea, outside the Strait of Hormuz — on the open-water side of Gulf logistics. The corridors below are the routes we source and supply along.</p>
+  </div>
+</section>
+
+<section aria-labelledby="gr-map" style="background:#1b1a18;color:#f3f2f2;padding:0 0 clamp(50px,7vw,110px)">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <h2 id="gr-map" style="position:absolute;left:-9999px">Trade corridor diagram</h2>
+    <div style="border-top:1px solid color-mix(in srgb,#f3f2f2 16%,transparent);padding-top:clamp(24px,3vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,3.6vw,64px);align-items:center">
+      <div style="position:relative">
+        <svg viewBox="0 0 100 68" style="width:100%;height:auto;overflow:visible" role="img" aria-label="Diagram: Oman at the centre with corridors radiating to GCC, Middle East, Asia, Europe and Africa">
+          <sc-for list="{{ rings }}" as="r" hint-placeholder-count="3">
+            <circle cx="{{ homeX }}" cy="{{ homeY }}" r="{{ r.r }}" fill="none" stroke="#b68235" stroke-width=".18" opacity="{{ r.o }}"></circle>
+          </sc-for>
+          <sc-for list="{{ arcs }}" as="a" hint-placeholder-count="5">
+            <path d="{{ a.d }}" fill="none" stroke="#b68235" stroke-width=".38" stroke-dasharray="2.6 2.6" opacity=".8" style="animation:uai-dash 28s linear infinite"></path>
+          </sc-for>
+          <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
+            <circle cx="{{ n.x }}" cy="{{ n.y }}" r="{{ n.r }}" fill="{{ n.fill }}" stroke="#b68235" stroke-width=".3"></circle>
+          </sc-for>
+        </svg>
+        <sc-for list="{{ nodes }}" as="n" hint-placeholder-count="6">
+          <button onClick="{{ pick }}" data-i="{{ n.i }}" style="{{ n.btnStyle }}">{{ n.name }}</button>
+        </sc-for>
+      </div>
+      <div>
+        <div style="border:1px solid color-mix(in srgb,#f3f2f2 18%,transparent);padding:clamp(22px,2.6vw,36px);margin-bottom:22px">
+          <p style="font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--color-accent);margin:0 0 14px">Selected corridor</p>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(24px,2.6vw,38px);margin:0 0 12px">{{ activeName }}</h3>
+          <p style="font-size:14.5px;line-height:1.8;opacity:.75;margin:0">{{ activeNote }}</p>
+        </div>
+        <p style="font-size:13px;line-height:1.75;opacity:.5;margin:0 0 22px;max-width:52ch">These are commercial corridors — markets we source from and supply into. They do not represent branch offices, owned warehouses or fleets.</p>
+        <a href="#/request-a-quote" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border:1px solid var(--color-accent);color:var(--color-accent);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 14%,transparent)">Enquire about a market <span data-arrow="1" style="display:inline-block">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="gr-why" style="background:var(--color-bg);padding:clamp(50px,7vw,110px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+    <div data-reveal="1" style="max-width:56ch;margin-bottom:clamp(26px,3.4vw,48px)">
+      <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Why Oman</p>
+      <h2 id="gr-why" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0">A practical position, not a slogan</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;background:var(--color-divider)">
+      <sc-for list="{{ advantages }}" as="a" hint-placeholder-count="4">
+        <div data-reveal="1" style="background:var(--color-bg);padding:clamp(20px,2.2vw,32px);display:flex;flex-direction:column;gap:10px;min-height:180px">
+          <span style="width:6px;height:6px;background:var(--color-accent);transform:rotate(45deg);display:block"></span>
+          <h3 style="font-family:var(--font-heading);font-weight:400;font-size:21px;margin:6px 0 0">{{ a.t }}</h3>
+          <p style="font-size:13.5px;line-height:1.78;opacity:.72;margin:0">{{ a.s }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--color-surface);border-top:1px solid var(--color-divider);padding:clamp(46px,6vw,100px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(26px,4vw,70px);align-items:center">
+    <figure data-reveal="1" style="margin:0">
+      <div class="plate" style="border-width:8px">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=80&auto=format&fit=crop" alt="Freight truck on a highway" loading="lazy" style="width:100%;height:clamp(240px,28vw,400px);object-fit:cover">
+      </div>
+      <figcaption style="font-size:11px;margin-top:10px;opacity:.55">Inland transport closes the gap between port and receiving point.</figcaption>
+    </figure>
+    <div data-reveal="1">
+      <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(26px,3.4vw,50px);line-height:1.06;margin:0 0 16px;max-width:24ch">International suppliers: a route into the region</h2>
+      <p style="font-size:15px;line-height:1.85;text-align:justify;hyphens:auto;opacity:.78;margin:0 0 24px;max-width:52ch">Manufacturers outside the region regularly find the commercial and administrative side harder than the product side. We provide the local counterparty: buyer introductions, documentation, and the follow-through that makes a first order become a second.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="#/become-a-supplier" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border:1px solid var(--color-accent);color:var(--color-accent-700);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="background:color-mix(in srgb,#b68235 12%,transparent)">Become a Supplier <span data-arrow="1" style="display:inline-block">→</span></a>
+        <a href="#/partner-with-us" onClick="{{ go }}" style="display:inline-flex;align-items:center;gap:9px;padding:14px 24px;border:1px solid var(--color-divider);color:inherit;text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px" style-hover="border-color:var(--color-text)">Partner With Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { active: 0, ready: !!window.UAI };
+  componentDidMount() { this._r = () => this.setState({ ready: true }); window.addEventListener('uai:ready', this._r); }
+  componentWillUnmount() { window.removeEventListener('uai:ready', this._r); }
+  renderVals() {
+    const D = window.UAI;
+    const go = (e) => { const a = e.currentTarget.getAttribute('href'); if (a) { e.preventDefault(); location.hash = a; } };
+    if (!D) return { go, nodes: [], arcs: [], rings: [], advantages: [], homeX: 62, homeY: 52, activeName: '', activeNote: '' };
+
+    const regions = D.regions;
+    const home = regions.filter((r) => r.home)[0];
+    const act = Math.min(this.state.active, regions.length - 1);
+
+    const nodes = regions.map((r, i) => ({
+      i: String(i), name: r.name, x: r.x, y: r.y,
+      r: r.home ? 2.1 : (i === act ? 1.7 : 1.2),
+      fill: r.home ? '#b68235' : (i === act ? '#b68235' : 'color-mix(in srgb,#b68235 28%,transparent)'),
+      btnStyle: 'position:absolute;left:' + r.x + '%;top:' + r.y + '%;transform:translate(-50%,-210%);background:none;border:0;cursor:pointer;font:inherit;font-size:' +
+        (r.home ? '13px' : '11.5px') + ';letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;padding:4px 6px;color:' +
+        (r.home || i === act ? '#b68235' : 'color-mix(in srgb,#f3f2f2 68%,transparent)') +
+        ';border-bottom:1px solid ' + (i === act ? '#b68235' : 'transparent') + ';transition:color .25s ease'
+    }));
+
+    const arcs = regions.filter((r) => !r.home).map((r) => {
+      const mx = (home.x + r.x) / 2, my = (home.y + r.y) / 2 - 13;
+      return { d: 'M' + home.x + ' ' + home.y + ' Q' + mx + ' ' + my + ' ' + r.x + ' ' + r.y };
+    });
+
+    return {
+      go,
+      homeX: home.x, homeY: home.y,
+      rings: [{ r: 7, o: '.5' }, { r: 14, o: '.32' }, { r: 22, o: '.18' }],
+      nodes, arcs,
+      activeName: regions[act].name,
+      activeNote: regions[act].note + (regions[act].home ? ' — Muscat is the commercial base from which sourcing, trading and coordination are run.' : ' — sourcing and supply activity is conducted through established commercial relationships in this market.'),
+      pick: (e) => this.setState({ active: parseInt(e.currentTarget.getAttribute('data-i'), 10) }),
+      advantages: [
+        { t: 'Open-sea access', s: 'Ports on the Arabian Sea sit outside the Strait of Hormuz, on direct routes to South Asia and East Africa.' },
+        { t: 'Gulf adjacency', s: 'Road and short-sea access to neighbouring GCC markets for onward distribution.' },
+        { t: 'Trade orientation', s: 'Oman\u2019s commercial framework is built around re-export and transit trade.' },
+        { t: 'Neutral counterparty', s: 'A regional partner able to deal with suppliers and buyers across several markets.' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

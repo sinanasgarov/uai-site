@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<section aria-labelledby="fm-title" style="position:relative;background:#1b1a18;color:#f3f2f2;overflow:hidden">
+  <img src="{{ heroImg }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.28;filter:sepia(.2) saturate(.7)">
+  <div style="position:relative;max-width:1560px;margin:0 auto;padding:clamp(60px,9vw,140px) clamp(18px,3.4vw,56px) clamp(38px,5vw,80px)">
+    <nav aria-label="Breadcrumb" style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-bottom:22px">
+      <a href="#/" onClick="{{ go }}" style="color:inherit;text-decoration:none">Home</a> <span style="opacity:.5">/</span> <span style="color:var(--color-accent)">{{ crumb }}</span>
+    </nav>
+    <h1 id="fm-title" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(34px,6vw,88px);line-height:1;letter-spacing:-.02em;margin:0 0 18px;max-width:20ch">{{ title }}</h1>
+    <p style="font-size:clamp(14.5px,1.1vw,17px);line-height:1.8;opacity:.76;margin:0;max-width:62ch">{{ intro }}</p>
+  </div>
+</section>
+
+<sc-if value="{{ isPartner }}" hint-placeholder-val="">
+  <section aria-label="Partnership routes" style="background:var(--color-bg);padding:clamp(44px,6.5vw,104px) 0">
+    <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(16px,2.4vw,32px);margin-bottom:clamp(34px,4.5vw,66px)">
+        <sc-for list="{{ paths }}" as="p" hint-placeholder-count="2">
+          <a data-reveal="1" data-zoom="1" href="{{ p.url }}" onClick="{{ go }}" style="border:1px solid var(--color-divider);text-decoration:none;color:inherit;display:flex;flex-direction:column;background:var(--color-bg)" style-hover="border-color:var(--color-accent)">
+            <span style="display:block;overflow:hidden;background:#1b1a18">
+              <img src="{{ p.img }}" alt="{{ p.t }}" loading="lazy" style="width:100%;height:clamp(180px,20vw,260px);object-fit:cover;filter:sepia(.19) saturate(.76)">
+            </span>
+            <span style="padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;gap:12px;flex:1">
+              <span style="font-family:var(--font-heading);font-size:clamp(23px,2.4vw,34px);line-height:1.15">{{ p.t }}</span>
+              <span style="font-size:14px;line-height:1.8;opacity:.72;flex:1">{{ p.s }}</span>
+              <span style="display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--color-divider)">
+                <sc-for list="{{ p.who }}" as="w" hint-placeholder-count="4">
+                  <span style="font-size:12.5px;opacity:.66;display:flex;gap:9px;align-items:baseline"><span style="color:var(--color-accent);font-size:8px">◆</span>{{ w }}</span>
+                </sc-for>
+              </span>
+              <span style="display:inline-flex;align-items:center;gap:9px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);margin-top:6px">{{ p.cta }} <span data-arrow="1" style="display:inline-block">→</span></span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+      <div data-reveal="1" style="border-top:1px solid var(--color-divider);padding-top:clamp(24px,3vw,44px)">
+        <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(22px,2.6vw,38px);margin:0 0 18px">Or send a general partnership enquiry</h2>
+        <p style="font-size:14px;line-height:1.8;opacity:.72;margin:0 0 6px;max-width:56ch">Complete the form below and it will be routed to the relevant desk.</p>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<section aria-label="Form" style="background:var(--color-surface);border-top:1px solid var(--color-divider);padding:clamp(40px,6vw,100px) 0">
+  <div style="max-width:1180px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
+
+    <sc-if value="{{ isSuccess }}" hint-placeholder-val="">
+      <div role="status" style="border:1px solid var(--color-accent);background:var(--color-bg);padding:clamp(28px,4vw,64px);text-align:center;animation:uai-fade .45s ease both">
+        <span style="display:inline-block;width:12px;height:12px;background:var(--color-accent);transform:rotate(45deg);margin-bottom:24px"></span>
+        <h2 style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.6vw,54px);line-height:1.06;margin:0 0 16px">{{ successTitle }}</h2>
+        <p style="font-size:15px;line-height:1.8;opacity:.76;margin:0 auto 26px;max-width:52ch">{{ successBody }}</p>
+        <div style="display:inline-flex;flex-direction:column;gap:8px;border:1px solid var(--color-divider);padding:18px 26px;margin-bottom:28px;background:var(--color-surface)">
+          <span style="font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;opacity:.55">Reference number</span>
+          <span style="font-family:var(--font-heading);font-size:clamp(22px,2.4vw,32px);letter-spacing:.06em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">{{ reference }}</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">
+          <a href="#/" onClick="{{ go }}" style="padding:14px 24px;border:1px solid var(--color-accent);color:var(--color-accent-700);text-decoration:none;font-family:var(--font-heading);font-size:14px;border-radius:2px">Back to Home</a>
+          <button onClick="{{ reset }}" style="padding:14px 24px;border:1px solid var(--color-divider);background:none;font:inherit;font-family:var(--font-heading);font-size:14px;border-radius:2px;cursor:pointer;color:inherit">Submit another</button>
+        </div>
+        <p style="font-size:11.5px;line-height:1.7;opacity:.5;margin:26px auto 0;max-width:56ch">A confirmation email is sent to the address provided, and a notification to the company inbox, once the mail provider environment variables are configured (see the handoff notes).</p>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ showForm }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submit }}" noValidate="{{ true }}" style="display:grid;gap:clamp(22px,2.6vw,38px)">
+
+        <sc-if value="{{ hasError }}" hint-placeholder-val="">
+          <div role="alert" style="border:1px solid #7d5411;background:color-mix(in srgb,#b68235 12%,transparent);padding:16px 20px;animation:uai-fade .3s ease both">
+            <p style="font-family:var(--font-heading);font-size:17px;margin:0 0 4px;color:var(--color-accent-800)">{{ errorTitle }}</p>
+            <p style="font-size:13px;line-height:1.7;margin:0;opacity:.8">{{ errorBody }}</p>
+          </div>
+        </sc-if>
+
+        <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+          <fieldset style="border:1px solid var(--color-divider);background:var(--color-bg);padding:clamp(20px,2.4vw,34px);margin:0">
+            <legend style="font-family:var(--font-heading);font-size:clamp(18px,1.8vw,24px);padding:0 10px;margin-left:-10px">{{ g.legend }}</legend>
+            <p style="font-size:12.5px;opacity:.6;margin:2px 0 20px">{{ g.note }}</p>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:clamp(14px,1.6vw,22px)">
+              <sc-for list="{{ g.fields }}" as="f" hint-placeholder-count="6">
+                <div style="{{ f.wrapStyle }}">
+                  <label for="{{ f.id }}" style="display:block;font-size:11.5px;letter-spacing:.06em;margin-bottom:6px;opacity:.75">{{ f.label }} <span style="{{ f.reqStyle }}">{{ f.reqMark }}</span></label>
+
+                  <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}">
+                    <input id="{{ f.id }}" name="{{ f.id }}" type="{{ f.type }}" value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" aria-invalid="{{ f.invalid }}" style="{{ f.inputStyle }}">
+                  </sc-if>
+
+                  <sc-if value="{{ f.isArea }}" hint-placeholder-val="">
+                    <textarea id="{{ f.id }}" name="{{ f.id }}" value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" rows="4" aria-invalid="{{ f.invalid }}" style="{{ f.areaStyle }}"></textarea>
+                  </sc-if>
+
+                  <sc-if value="{{ f.isSelect }}" hint-placeholder-val="">
+                    <select id="{{ f.id }}" name="{{ f.id }}" value="{{ f.value }}" onChange="{{ f.onChange }}" aria-invalid="{{ f.invalid }}" style="{{ f.inputStyle }}">
+                      <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="4">
+                        <option value="{{ o.v }}">{{ o.l }}</option>
+                      </sc-for>
+                    </select>
+                  </sc-if>
+
+                  <sc-if value="{{ f.isRadio }}" hint-placeholder-val="">
+                    <div role="radiogroup" aria-label="{{ f.label }}" style="display:flex;flex-wrap:wrap;gap:8px;padding-top:2px">
+                      <sc-for list="{{ f.options }}" as="o" hint-placeholder-count="3">
+                        <button type="button" onClick="{{ o.pick }}" aria-pressed="{{ o.active }}" style="{{ o.style }}">{{ o.l }}</button>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ f.isFile }}" hint-placeholder-val="">
+                    <div>
+                      <label for="{{ f.id }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px dashed color-mix(in srgb,#201f1d 28%,transparent);padding:16px 18px;cursor:pointer;background:var(--color-surface)" style-hover="border-color:var(--color-accent)">
+                        <span>
+                          <span style="display:block;font-size:13px">{{ f.fileLabel }}</span>
+                          <span style="display:block;font-size:11px;opacity:.55;margin-top:3px">PDF, DOC, DOCX, XLS, XLSX, JPG, PNG · max 10 MB per file</span>
+                        </span>
+                        <span style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700);white-space:nowrap">Choose files</span>
+                      </label>
+                      <input id="{{ f.id }}" name="{{ f.id }}" type="file" multiple="{{ true }}" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png" onChange="{{ f.onFiles }}" style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden">
+                      <sc-if value="{{ f.hasFiles }}" hint-placeholder-val="">
+                        <div style="display:grid;gap:6px;margin-top:10px">
+                          <sc-for list="{{ f.files }}" as="fl" hint-placeholder-count="2">
+                            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--color-divider);padding:9px 12px;background:var(--color-bg);font-size:12px">
+                              <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ fl.name }}</span>
+                              <span style="opacity:.5;font-variant-numeric:tabular-nums">{{ fl.size }}</span>
+                              <span style="{{ fl.badgeStyle }}">{{ fl.status }}</span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+
+                  <sc-if value="{{ f.showHint }}" hint-placeholder-val="">
+                    <p style="font-size:11px;line-height:1.6;opacity:.5;margin:6px 0 0">{{ f.hint }}</p>
+                  </sc-if>
+                  <sc-if value="{{ f.invalid }}" hint-placeholder-val="">
+                    <p role="alert" style="font-size:11.5px;line-height:1.5;margin:6px 0 0;color:var(--color-accent-800)">{{ f.error }}</p>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </fieldset>
+        </sc-for>
+
+        <div style="display:grid;gap:16px;border:1px solid var(--color-divider);background:var(--color-bg);padding:clamp(18px,2.2vw,30px)">
+          <label style="display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.65;cursor:pointer">
+            <input type="checkbox" checked="{{ consent }}" onChange="{{ toggleConsent }}" style="margin-top:3px;accent-color:#b68235;width:16px;height:16px">
+            <span>I confirm the information provided is accurate and consent to it being used to respond to this submission, in line with the <a href="#/privacy" onClick="{{ go }}">Privacy Policy</a>.</span>
+          </label>
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--color-divider);padding-top:16px">
+            <span style="font-size:11.5px;opacity:.6">Spam check: what is {{ capA }} + {{ capB }}?</span>
+            <input value="{{ capAnswer }}" onChange="{{ onCaptcha }}" inputMode="numeric" aria-label="Spam check answer" style="width:80px;min-height:38px;padding:6px 10px;font:inherit;font-size:14px;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:2px;color:inherit">
+            <span style="font-size:11px;opacity:.45">Replaced by a CAPTCHA service in production.</span>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <button type="submit" disabled="{{ submitting }}" style="{{ submitStyle }}">
+            <sc-if value="{{ submitting }}" hint-placeholder-val="">
+              <span style="display:inline-block;width:13px;height:13px;border:1.5px solid color-mix(in srgb,#b68235 35%,transparent);border-top-color:#b68235;border-radius:50%;animation:uai-spin .8s linear infinite"></span>
+            </sc-if>
+            {{ submitLabel }}
+          </button>
+          <p style="font-size:11.5px;opacity:.55;margin:0;max-width:44ch">{{ submitNote }}</p>
+        </div>
+      </form>
+    </sc-if>
+  </div>
+</section>
+
+<section style="background:var(--color-bg);border-top:1px solid var(--color-divider);padding:clamp(36px,5vw,80px) 0">
+  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--color-divider)">
+    <sc-for list="{{ assurances }}" as="a" hint-placeholder-count="3">
+      <div style="background:var(--color-bg);padding:clamp(18px,2.2vw,30px)">
+        <p style="font-family:var(--font-heading);font-size:18px;margin:0 0 8px">{{ a.t }}</p>
+        <p style="font-size:13px;line-height:1.75;opacity:.7;margin:0">{{ a.s }}</p>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;kind&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;quote&quot;,&quot;supplier&quot;,&quot;partner&quot;],&quot;default&quot;:&quot;quote&quot;,&quot;tsType&quot;:&quot;'quote' | 'supplier' | 'partner'&quot;}}">
+class Component extends DCLogic {
+  state = {
+    values: {}, files: {}, errors: {}, touched: false,
+    submitting: false, success: false, error: '', reference: '',
+    consent: false, captcha: '', capA: 3, capB: 4, ready: !!window.UAI
+  };
+
+  componentDidMount() {
+    this._r = () => this.setState({ ready: true });
+    window.addEventListener('uai:ready', this._r);
+    this.setState({ capA: 2 + Math.floor(Math.random() * 6), capB: 2 + Math.floor(Math.random() * 6) });
+  }
+  componentWillUnmount() { window.removeEventListener('uai:ready', this._r); }
+  componentDidUpdate(prev) { if (prev.kind !== this.props.kind) this.reset(); }
+
+  reset() {
+    this.setState({ values: {}, files: {}, errors: {}, submitting: false, success: false, error: '', reference: '', consent: false, captcha: '' });
+  }
+
+  /* ---- schema per form kind. A CMS/API build reads the same shape. ---- */
+  schema() {
+    const D = window.UAI;
+    const sectorOpts = [{ v: '', l: 'Select a sector…' }].concat((D ? D.sectors : []).map((s) => ({ v: s.slug, l: s.title })));
+    const kind = this.props.kind || 'quote';
+
+    if (kind === 'supplier') {
+      return [
+        { legend: 'Company', note: 'Who you are and where you are based.', fields: [
+          { id: 'company', label: 'Company Name', req: true },
+          { id: 'country', label: 'Country', req: true },
+          { id: 'website', label: 'Website', type: 'url', placeholder: 'https://' },
+          { id: 'type', label: 'Company type', kind: 'radio', req: true, options: ['Manufacturer', 'Distributor', 'Trader'] }
+        ] },
+        { legend: 'Contact', note: 'The person we should correspond with.', fields: [
+          { id: 'contact', label: 'Contact Person', req: true },
+          { id: 'email', label: 'Email', type: 'email', req: true },
+          { id: 'phone', label: 'Phone', type: 'tel', req: true }
+        ] },
+        { legend: 'Supply profile', note: 'What you make or distribute, and at what scale.', fields: [
+          { id: 'industry', label: 'Industry', req: true },
+          { id: 'categories', label: 'Product Categories', req: true, hint: 'Separate multiple categories with commas.' },
+          { id: 'markets', label: 'Export Markets' },
+          { id: 'certifications', label: 'Certifications', hint: 'List only certifications you currently hold.' },
+          { id: 'capacity', label: 'Production Capacity' },
+          { id: 'moq', label: 'Minimum Order Quantity' },
+          { id: 'message', label: 'Message', kind: 'area', full: true }
+        ] },
+        { legend: 'Documents', note: 'Optional, but they speed up evaluation considerably.', fields: [
+          { id: 'profile', label: 'Company Profile', kind: 'file', fileLabel: 'Upload company profile', full: true },
+          { id: 'catalogue', label: 'Product Catalogue', kind: 'file', fileLabel: 'Upload product catalogue', full: true }
+        ] }
+      ];
+    }
+
+    if (kind === 'partner') {
+      return [
+        { legend: 'About you', note: 'Company and contact details.', fields: [
+          { id: 'name', label: 'Full Name', req: true },
+          { id: 'company', label: 'Company Name', req: true },
+          { id: 'position', label: 'Position' },
+          { id: 'email', label: 'Email', type: 'email', req: true },
+          { id: 'phone', label: 'Phone', type: 'tel' },
+          { id: 'country', label: 'Country', req: true }
+        ] },
+        { legend: 'Partnership', note: 'What kind of relationship you are proposing.', fields: [
+          { id: 'side', label: 'I am a', kind: 'radio', req: true, options: ['Supplier', 'Buyer', 'Logistics partner', 'Contractor', 'Other'] },
+          { id: 'sector', label: 'Business Sector', kind: 'select', options: sectorOpts },
+          { id: 'proposal', label: 'Proposal', kind: 'area', req: true, full: true, hint: 'What you are proposing, and what you would need from us.' },
+          { id: 'attachment', label: 'Supporting documents', kind: 'file', fileLabel: 'Upload supporting documents', full: true }
+        ] }
+      ];
+    }
+
+    return [
+      { legend: 'Your details', note: 'So we know who to respond to.', fields: [
+        { id: 'name', label: 'Full Name', req: true },
+        { id: 'company', label: 'Company Name', req: true },
+        { id: 'position', label: 'Position' },
+        { id: 'email', label: 'Email', type: 'email', req: true },
+        { id: 'phone', label: 'Phone', type: 'tel', req: true },
+        { id: 'country', label: 'Country', req: true }
+      ] },
+      { legend: 'Requirement', note: 'The more precise this is, the faster the quotation.', fields: [
+        { id: 'sector', label: 'Business Sector', kind: 'select', req: true, options: sectorOpts },
+        { id: 'product', label: 'Product / Service Required', req: true, full: true },
+        { id: 'quantity', label: 'Quantity', req: true },
+        { id: 'spec', label: 'Technical Specification', kind: 'area', full: true, hint: 'Grades, standards, dimensions, ratings — or reference a drawing you are attaching.' }
+      ] },
+      { legend: 'Delivery', note: 'Where it has to be, and when.', fields: [
+        { id: 'destination', label: 'Delivery Location', req: true },
+        { id: 'date', label: 'Required Delivery Date', type: 'date' },
+        { id: 'notes', label: 'Additional Information', kind: 'area', full: true },
+        { id: 'attachments', label: 'Upload Files', kind: 'file', fileLabel: 'Drawings, specifications, BOQ', full: true }
+      ] }
+    ];
+  }
+
+  validate() {
+    const errs = {};
+    const v = this.state.values;
+    this.schema().forEach((g) => g.fields.forEach((f) => {
+      const val = (v[f.id] || '').trim();
+      if (f.req && !val) errs[f.id] = f.label + ' is required.';
+      else if (f.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) errs[f.id] = 'Enter a valid email address.';
+      else if (f.type === 'tel' && val && !/^[+0-9 ()\-]{6,}$/.test(val)) errs[f.id] = 'Enter a valid phone number.';
+      else if (f.type === 'url' && val && !/^https?:\/\/.+\..+/.test(val)) errs[f.id] = 'Include http:// or https://';
+    }));
+    return errs;
+  }
+
+  reference() {
+    const kind = this.props.kind || 'quote';
+    const pre = kind === 'supplier' ? 'SUP' : kind === 'partner' ? 'PTR' : 'RFQ';
+    const d = new Date();
+    const y = String(d.getFullYear());
+    const seq = String(Math.floor(1000 + Math.random() * 9000));
+    return pre + '-' + y + '-' + seq;
+  }
+
+  renderVals() {
+    const D = window.UAI;
+    const kind = this.props.kind || 'quote';
+    const go = (e) => { const a = e.currentTarget.getAttribute('href'); if (a) { e.preventDefault(); location.hash = a; } };
+    const st = this.state;
+
+    const copy = {
+      quote: {
+        crumb: 'Request a Quote', title: 'Request a Quote',
+        intro: 'Send the requirement with as much detail as you have. Incomplete enquiries are still welcome — we will come back with the questions we need answered.',
+        heroImg: D ? D.img.earthworks : '', submit: 'Submit Request',
+        note: 'Reviewed within one business day during Oman working hours.',
+        successTitle: 'Request Received',
+        successBody: 'Thank you. Your request has been received. Our team will review your requirement and contact you.'
+      },
+      supplier: {
+        crumb: 'Become a Supplier', title: 'Become a Supplier',
+        intro: 'We welcome manufacturers, suppliers and commercial partners interested in developing long-term business opportunities across regional and international markets.',
+        heroImg: D ? D.img.factory : '', submit: 'Submit Supplier Profile',
+        note: 'Profiles are held for sourcing enquiries in your categories.',
+        successTitle: 'Profile Received',
+        successBody: 'Thank you. Your supplier profile has been received and will be reviewed by the relevant sector desk.'
+      },
+      partner: {
+        crumb: 'Partner With Us', title: 'Build With Us',
+        intro: 'Manufacturers, suppliers, distributors, logistics companies, contractors, engineering and trading companies, project and procurement organisations — there are two ways in.',
+        heroImg: D ? D.img.handshake : '', submit: 'Submit Enquiry',
+        note: 'Routed to the desk closest to your proposal.',
+        successTitle: 'Enquiry Received',
+        successBody: 'Thank you. Your partnership enquiry has been received and we will respond with next steps.'
+      }
+    }[kind];
+
+    const errs = st.errors;
+    const set = (id) => (e) => {
+      const values = Object.assign({}, this.state.values);
+      values[id] = e.target.value;
+      const errors = Object.assign({}, this.state.errors);
+      delete errors[id];
+      this.setState({ values, errors });
+    };
+
+    const inputBase = 'width:100%;min-height:42px;padding:9px 12px;font:inherit;font-size:14px;background:var(--color-surface);border:1px solid var(--color-divider);border-radius:2px;color:var(--color-text);caret-color:var(--color-accent)';
+
+    const groups = this.schema().map((g) => ({
+      legend: g.legend, note: g.note,
+      fields: g.fields.map((f) => {
+        const invalid = !!errs[f.id];
+        const border = invalid ? '#7d5411' : 'var(--color-divider)';
+        const list = st.files[f.id] || [];
+        return {
+          id: f.id, label: f.label, type: f.type || 'text',
+          placeholder: f.placeholder || '',
+          value: st.values[f.id] || '',
+          onChange: set(f.id),
+          invalid, error: errs[f.id] || '',
+          hint: f.hint || '', showHint: !!f.hint && !invalid,
+          reqMark: f.req ? '*' : '', reqStyle: 'color:var(--color-accent);opacity:' + (f.req ? '1' : '0'),
+          wrapStyle: f.full ? 'grid-column:1/-1' : '',
+          isText: !f.kind, isArea: f.kind === 'area', isSelect: f.kind === 'select',
+          isRadio: f.kind === 'radio', isFile: f.kind === 'file',
+          inputStyle: inputBase + ';border-color:' + border,
+          areaStyle: inputBase + ';min-height:110px;resize:vertical;line-height:1.65;border-color:' + border,
+          options: f.kind === 'select'
+            ? f.options
+            : (f.options || []).map((o) => ({
+                l: o, active: st.values[f.id] === o,
+                pick: () => {
+                  const values = Object.assign({}, this.state.values); values[f.id] = o;
+                  const errors = Object.assign({}, this.state.errors); delete errors[f.id];
+                  this.setState({ values, errors });
+                },
+                style: 'font:inherit;font-size:13px;cursor:pointer;padding:10px 16px;border-radius:2px;background:' +
+                  (st.values[f.id] === o ? 'color-mix(in srgb,#b68235 13%,transparent)' : 'transparent') +
+                  ';border:1px solid ' + (st.values[f.id] === o ? '#b68235' : border) +
+                  ';color:' + (st.values[f.id] === o ? 'var(--color-accent-700)' : 'inherit')
+              })),
+          fileLabel: f.fileLabel || 'Upload files',
+          hasFiles: list.length > 0,
+          files: list,
+          onFiles: (e) => {
+            const ok = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png'];
+            const picked = Array.prototype.slice.call(e.target.files || []).map((file) => {
+              const ext = (file.name.split('.').pop() || '').toLowerCase();
+              const tooBig = file.size > 10 * 1024 * 1024;
+              const badType = ok.indexOf(ext) === -1;
+              const status = badType ? 'Type not allowed' : tooBig ? 'Over 10 MB' : 'Ready';
+              return {
+                name: file.name,
+                size: (file.size / 1024 / 1024).toFixed(2) + ' MB',
+                status,
+                badgeStyle: 'font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:' +
+                  (status === 'Ready' ? 'var(--color-accent-700)' : '#7d5411')
+              };
+            });
+            const files = Object.assign({}, this.state.files);
+            files[f.id] = picked;
+            this.setState({ files });
+          }
+        };
+      })
+    }));
+
+    const submit = (e) => {
+      e.preventDefault();
+      const errors = this.validate();
+      if (!this.state.consent) errors.__consent = '1';
+      const capOk = parseInt(this.state.captcha, 10) === (this.state.capA + this.state.capB);
+      if (!capOk) errors.__captcha = '1';
+      if (Object.keys(errors).length) {
+        this.setState({
+          errors,
+          error: !this.state.consent ? 'consent' : (!capOk ? 'captcha' : 'fields')
+        });
+        return;
+      }
+      this.setState({ submitting: true, error: '' });
+      /* POST /api/inquiries — wired in the Next.js handoff; simulated here. */
+      setTimeout(() => {
+        this.setState({ submitting: false, success: true, reference: this.reference() });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1100);
+    };
+
+    const errorCopy = {
+      fields: { t: 'Some details still need attention', b: 'The highlighted fields below are required or need correcting.' },
+      consent: { t: 'Consent required', b: 'Please confirm the accuracy and consent statement before submitting.' },
+      captcha: { t: 'Spam check failed', b: 'The answer to the arithmetic check was not correct. Please try again.' }
+    }[st.error] || { t: '', b: '' };
+
+    return {
+      go, isPartner: kind === 'partner',
+      crumb: copy.crumb, title: copy.title, intro: copy.intro, heroImg: copy.heroImg,
+      groups,
+      showForm: !st.success, isSuccess: st.success,
+      successTitle: copy.successTitle, successBody: copy.successBody, reference: st.reference,
+      reset: () => this.reset(),
+      submit, submitting: st.submitting,
+      submitLabel: st.submitting ? 'Submitting…' : copy.submit,
+      submitNote: copy.note,
+      submitStyle: 'display:inline-flex;align-items:center;gap:10px;padding:15px 30px;font:inherit;font-family:var(--font-heading);font-weight:600;font-size:14.5px;border-radius:2px;cursor:' +
+        (st.submitting ? 'wait' : 'pointer') + ';background:transparent;border:1px solid var(--color-accent);color:var(--color-accent-700);opacity:' + (st.submitting ? '.6' : '1'),
+      hasError: !!st.error, errorTitle: errorCopy.t, errorBody: errorCopy.b,
+      consent: st.consent,
+      toggleConsent: () => this.setState({ consent: !this.state.consent }),
+      capA: st.capA, capB: st.capB, capAnswer: st.captcha,
+      onCaptcha: (e) => this.setState({ captcha: e.target.value }),
+      paths: [
+        { t: 'I Am a Supplier', s: 'You manufacture, distribute or trade products and want a commercial route into Oman and the wider region.', who: ['Manufacturers', 'Distributors', 'Trading companies', 'Industrial producers'], cta: 'Register as supplier', url: '#/become-a-supplier', img: D ? D.img.productionLine : '' },
+        { t: 'I Am a Buyer', s: 'You need materials, equipment or logistics support and want one counterparty to carry the requirement.', who: ['Contractors', 'Project companies', 'Procurement organisations', 'Industrial operators'], cta: 'Request a quote', url: '#/request-a-quote', img: D ? D.img.construction : '' }
+      ],
+      assurances: [
+        { t: 'Reviewed by a person', s: 'Submissions go to the sector desk, not an autoresponder queue.' },
+        { t: 'Held in confidence', s: 'Specifications and drawings are shared with suppliers only to obtain pricing.' },
+        { t: 'Answered either way', s: 'If we cannot serve the requirement, we say so rather than going quiet.' }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
