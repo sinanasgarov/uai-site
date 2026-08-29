@@ -57,7 +57,7 @@ function build() {
       <a href="#" data-filter="All" class="uai-insight-chip is-active" style="font:inherit;font-size:12.5px;text-decoration:none;white-space:nowrap;flex:none;padding:8px 14px;border-radius:2px;display:inline-flex;gap:7px;align-items:center;background:color-mix(in srgb,#b68235 13%,transparent);border:1px solid #b68235;color:var(--color-accent-700)">All</a>${filterChips}
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--color-divider)" id="uai-programme-grid">${programmeHtml}
+    <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:var(--color-divider)" id="uai-programme-grid">${programmeHtml}
     </div>
     <div id="uai-insight-empty" hidden style="padding:clamp(40px,6vw,90px) 0;text-align:center;border:1px solid var(--color-divider)">
       <p style="font-family:var(--font-heading);font-size:clamp(22px,2.4vw,32px);margin:0 0 10px">Nothing filed under this category yet</p>

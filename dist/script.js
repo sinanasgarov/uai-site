@@ -19,6 +19,7 @@
     initFinder();
     initFlowPickers();
     initRegionPicker();
+    initGridFill();
     initInsightsFilter();
     initMailtoForms();
     initActiveNav();
@@ -309,6 +310,63 @@
     });
   }
 
+  // ---- grid empty-cell fix -------------------------------------------
+  // Several card grids use a "hairline" layout — 1px gap over a divider-
+  // colored background, so the gap itself reads as a border without every
+  // card needing its own (which would double up between neighbours). CSS
+  // Grid always lays out a full rectangle of column tracks per row, so
+  // when a card count doesn't divide evenly by however many columns fit
+  // at the current width, the last row's leftover cell(s) are genuinely
+  // empty grid tracks — and the container's own (divider-colored)
+  // background shows through them as a solid block. There's no CSS
+  // selector for "a grid cell with no item in it", so pad the row with
+  // aria-hidden filler elements — painted the same color as whatever
+  // sits behind the grid (its nearest opaque ancestor), not transparent,
+  // since transparent would just let the divider-colored grid background
+  // itself show through again — recomputed on resize (column count is
+  // responsive) and whenever a filter changes which cards are visible.
+  function initGridFill() {
+    var grids = $all("[data-grid-fill]");
+    if (!grids.length) return;
+    function resolveBg(el) {
+      var node = el.parentElement;
+      while (node) {
+        var bg = getComputedStyle(node).backgroundColor;
+        if (bg && bg !== "rgba(0, 0, 0, 0)" && bg !== "transparent") return bg;
+        node = node.parentElement;
+      }
+      return getComputedStyle(document.body).backgroundColor;
+    }
+    function fill(grid) {
+      Array.prototype.filter.call(grid.children, function (el) { return el.hasAttribute("data-grid-filler"); })
+        .forEach(function (el) { el.remove(); });
+      var items = Array.prototype.filter.call(grid.children, function (el) {
+        return el.style.display !== "none" && !el.hasAttribute("hidden");
+      });
+      if (!items.length) return;
+      var cols = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(function (t) { return parseFloat(t) > 0.5; }).length;
+      if (cols < 2) return;
+      var remainder = items.length % cols;
+      if (remainder === 0) return;
+      var bg = resolveBg(grid);
+      for (var i = 0; i < cols - remainder; i++) {
+        var filler = document.createElement("div");
+        filler.setAttribute("data-grid-filler", "");
+        filler.setAttribute("aria-hidden", "true");
+        filler.style.background = bg;
+        grid.appendChild(filler);
+      }
+    }
+    function fillAll() { grids.forEach(fill); }
+    fillAll();
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fillAll, 120);
+    });
+    window.uaiFillGrids = fillAll;
+  }
+
   // ---- insights category filter ------------------------------------------
   function initInsightsFilter() {
     var chips = $all(".uai-insight-chip");
@@ -326,6 +384,7 @@
       if (grid) grid.hidden = shown === 0;
       if (empty) empty.hidden = shown !== 0;
       chips.forEach(function (c) { c.classList.toggle("is-active", c.getAttribute("data-filter") === cat); });
+      if (window.uaiFillGrids) window.uaiFillGrids();
     }
     chips.forEach(function (c) {
       c.addEventListener("click", function (e) {

@@ -59,7 +59,7 @@ function build() {
         </div>
         <figcaption style="font-size:11px;margin-top:10px;opacity:.55">Requirements are reviewed commercially and technically before an offer is made.</figcaption>
       </figure>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">${factsHtml}
+      <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--color-divider);border:1px solid var(--color-divider)">${factsHtml}
       </div>
     </div>
   </div>
