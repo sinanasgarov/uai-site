@@ -90,7 +90,7 @@ function build() {
       <p style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--color-accent);margin:0 0 18px">Why Oman</p>
       <h2 id="gr-why" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0">A practical position, not a slogan</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1px;background:var(--color-divider)">${advantagesHtml}
+    <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1px;background:var(--color-divider)">${advantagesHtml}
     </div>
   </div>
 </section>

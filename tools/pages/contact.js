@@ -125,7 +125,7 @@ function build() {
         </div>
       </form>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:var(--color-divider);margin-top:20px;border:1px solid var(--color-divider)">${routesHtml}
+      <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:var(--color-divider);margin-top:20px;border:1px solid var(--color-divider)">${routesHtml}
       </div>
     </div>
   </div>

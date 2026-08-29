@@ -246,7 +246,7 @@ ${formSection("supplier")}
 ${formSection("partner")}
 
 <section style="background:var(--color-bg);border-top:1px solid var(--color-divider);padding:clamp(36px,5vw,80px) 0">
-  <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--color-divider)">${assurancesHtml}
+  <div data-grid-fill="1" style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:1px;background:var(--color-divider)">${assurancesHtml}
   </div>
 </section>`;
 }

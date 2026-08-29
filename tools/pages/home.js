@@ -182,7 +182,7 @@ function build() {
       <p style="font-size:15.5px;line-height:1.85;margin:0 0 18px;text-align:justify;hyphens:auto;max-width:56ch">United Assets Investments brings together a diversified range of business activities designed to connect commercial opportunities across regional and international markets. The group is structured so that a client with a mixed requirement &mdash; materials, equipment, freight and the paperwork around them &mdash; can deal with one commercial party rather than five.</p>
       <p style="font-size:15.5px;line-height:1.85;margin:0 0 28px;text-align:justify;hyphens:auto;max-width:56ch;opacity:.82">Our approach combines strategic sourcing, trading, logistics coordination, industrial supply and business development. Oman is our base and our advantage: a trading position on the Arabian Sea with direct routes to the Gulf, East Africa and South Asia.</p>
       <a class="uai-underline-link" href="about.html">Read more <span data-arrow="1" style="display:inline-block">&#8594;</span></a>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--color-divider);margin-top:clamp(34px,4vw,52px)">${pillarsHtml}
+      <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--color-divider);margin-top:clamp(34px,4vw,52px)">${pillarsHtml}
       </div>
     </div>
     <figure data-reveal="1" style="margin:0">
@@ -203,7 +203,7 @@ function build() {
       </div>
       <p style="font-size:15px;line-height:1.8;opacity:.72;margin:0;max-width:46ch">A diversified platform built to serve multiple industries and commercial requirements &mdash; each sector run as its own commercial desk, with shared logistics and administration behind it.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:1px;background:var(--color-divider)">${sectorCardsHtml}
+    <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:1px;background:var(--color-divider)">${sectorCardsHtml}
     </div>
   </div>
 </section>
@@ -229,7 +229,7 @@ function build() {
       </div>
       <a class="uai-underline-link" href="solutions.html">All solutions <span data-arrow="1" style="display:inline-block">&#8594;</span></a>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:1px;background:var(--color-divider)">${solutionCardsHtml}
+    <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:1px;background:var(--color-divider)">${solutionCardsHtml}
     </div>
   </div>
 </section>

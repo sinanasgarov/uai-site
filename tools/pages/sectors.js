@@ -109,7 +109,7 @@ function build() {
     ${s.services ? `<section aria-labelledby="sd-services-${attr(s.slug)}" style="background:var(--color-surface);padding:clamp(50px,7vw,110px) 0">
       <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
         <h2 id="sd-services-${attr(s.slug)}" data-reveal="1" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0 0 clamp(26px,3.4vw,48px);max-width:22ch">What this desk covers</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1px;background:var(--color-divider)">
+        <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:var(--color-divider)">
           ${s.services.map((v) => `<div data-reveal="1" class="uai-catlink-hover" style="background:var(--color-surface);padding:clamp(20px,2.2vw,32px);display:flex;flex-direction:column;gap:10px;min-height:170px">
             <span style="width:6px;height:6px;background:var(--color-accent);transform:rotate(45deg);display:block"></span>
             <h3 style="font-family:var(--font-heading);font-weight:400;font-size:20px;margin:6px 0 0">${esc(v.name)}</h3>
@@ -182,7 +182,7 @@ function build() {
     ${s.steps ? `<section aria-labelledby="sd-steps-${attr(s.slug)}" style="background:#1b1a18;color:#f3f2f2;padding:clamp(50px,7vw,110px) 0">
       <div style="max-width:1560px;margin:0 auto;padding:0 clamp(18px,3.4vw,56px)">
         <h2 id="sd-steps-${attr(s.slug)}" data-reveal="1" style="font-family:var(--font-heading);font-weight:400;font-size:clamp(28px,3.8vw,58px);line-height:1.05;margin:0 0 clamp(26px,3.4vw,44px);max-width:24ch">Source &#8594; Evaluate &#8594; Coordinate &#8594; Supply</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:color-mix(in srgb,#f3f2f2 16%,transparent)">
+        <div data-grid-fill="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:1px;background:color-mix(in srgb,#f3f2f2 16%,transparent)">
           ${s.steps.map((x, i) => `<div data-reveal="1" style="background:#1b1a18;padding:clamp(20px,2.4vw,34px)">
             <p style="font-size:11px;font-variant-numeric:tabular-nums;letter-spacing:.18em;color:var(--color-accent);margin:0 0 14px">0${i + 1}</p>
             <h3 style="font-family:var(--font-heading);font-weight:400;font-size:24px;margin:0 0 10px">${esc(x.name)}</h3>
