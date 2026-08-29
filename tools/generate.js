@@ -76,6 +76,17 @@ function write(file, html) {
   console.log("wrote", file, "(" + html.length + " bytes)");
 }
 
+// GitHub Pages deploy-time files. Rewritten on every build (rather than
+// hand-maintained only in dist/) so they can never go stale or get lost if
+// a future change to this script starts clearing dist/ first — CNAME's
+// content is derived from SITE (build.js) so the domain is declared once.
+function writeDeployFiles() {
+  fs.writeFileSync(path.join(DIST, ".nojekyll"), "");
+  const domain = SITE.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  fs.writeFileSync(path.join(DIST, "CNAME"), domain + "\n");
+  console.log("wrote .nojekyll, CNAME (" + domain + ")");
+}
+
 function main() {
   write("index.html", page({
     navKey: "home", title: "United Assets Investments SPC — Trade, Logistics & Industrial Supply, Oman",
@@ -157,6 +168,7 @@ function main() {
   }));
 
   writeScriptJs();
+  writeDeployFiles();
   console.log("\nBuild complete →", DIST);
 }
 

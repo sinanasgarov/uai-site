@@ -22,11 +22,12 @@ const vm = require("vm");
 const ROOT = path.join(__dirname, "..");
 const DIST = path.join(ROOT, "dist");
 
-// GitHub Pages base — used only to build absolute canonical/og:image URLs
+// Production origin — used only to build absolute canonical/og:image URLs
 // (both need to be fully-qualified per spec); every on-page link/asset
 // reference stays relative so the site also works opened from disk or
-// from any subfolder on any static host.
-const SITE = "https://sinanasgarov.github.io/uai-site/";
+// from any subfolder on any static host. Custom domain (see dist/CNAME)
+// serves from the root, same as the relative paths already assume.
+const SITE = "https://uaiassets.com/";
 
 // ---------------------------------------------------------------------
 // 1. Load window.UAI out of content.js without retyping the data model.
