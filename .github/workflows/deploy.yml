@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Only one Pages deployment at a time — a newer push should win, not queue
+# behind or race an older one.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # No package.json / npm dependencies — tools/generate.js is plain
+      # Node using only built-in modules, so there's nothing to install.
+      - name: Build site
+        run: node tools/generate.js
+
+      # generate.js writes dist/.nojekyll and dist/CNAME itself on every
+      # run (see writeDeployFiles() in tools/generate.js), so both are
+      # already inside dist/ here — .nojekyll makes Pages serve dist/_ds/
+      # instead of ignoring it as a Jekyll underscore-folder, and CNAME
+      # points the custom domain at this deployment.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
