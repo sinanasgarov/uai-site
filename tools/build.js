@@ -58,6 +58,15 @@ function attr(s) {
 function altOf(url) {
   return D.altFor(url) || "";
 }
+// Phone numbers in content.js are stored for display ("+968 7170 1844");
+// tel: and wa.me links need the digits reduced differently — tel: keeps a
+// leading "+", wa.me takes digits only (no "+", no spaces).
+function telHref(phone) {
+  return "tel:" + String(phone || "").replace(/[^+0-9]/g, "");
+}
+function waHref(whatsapp) {
+  return "https://wa.me/" + String(whatsapp || "").replace(/[^0-9]/g, "");
+}
 
 // ---------------------------------------------------------------------
 // 3. <head> + header + footer — identical on every page.
@@ -234,9 +243,9 @@ function footerBlock() {
           <p class="uai-footer-heading">Contact</p>
           <div style="display:grid;gap:12px;font-size:13px;opacity:.72;line-height:1.6">
             <span>${esc(D.contact.location)}</span>
-            <span style="opacity:.75;font-size:12px">Email: ${esc(D.contact.email)}</span>
-            <span style="opacity:.75;font-size:12px">Phone: ${esc(D.contact.phone)}</span>
-            <span style="opacity:.75;font-size:12px">WhatsApp: ${esc(D.contact.whatsapp)}</span>
+            <a href="mailto:${attr(D.contact.email)}" style="font-size:12px" class="uai-footer-link">Email: ${esc(D.contact.email)}</a>
+            <a href="${attr(telHref(D.contact.phone))}" style="font-size:12px" class="uai-footer-link">Phone: ${esc(D.contact.phone)}</a>
+            <a href="${attr(waHref(D.contact.whatsapp))}" target="_blank" rel="noopener" style="font-size:12px" class="uai-footer-link">WhatsApp: ${esc(D.contact.whatsapp)}</a>
           </div>
           <a href="contact.html" style="display:inline-block;margin-top:16px;font-size:12.5px;color:var(--color-accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,#b68235 45%,transparent);padding-bottom:2px">Contact our team &#8594;</a>
         </div>
@@ -292,4 +301,4 @@ ${footerBlock()}
 `;
 }
 
-module.exports = { D, esc, attr, altOf, page, DIST, ROOT, SITE };
+module.exports = { D, esc, attr, altOf, telHref, waHref, page, DIST, ROOT, SITE };

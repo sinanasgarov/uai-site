@@ -420,10 +420,10 @@
     },
     contact: {
       location: 'Muscat, Sultanate of Oman',
-      address: 'Address to be confirmed — Muscat, Sultanate of Oman',
-      email: 'email@to-be-confirmed',
-      phone: '+968 — to be confirmed',
-      whatsapp: '+968 — to be confirmed',
+      address: 'Building 15, Way 63, Block 363, South Al Mabilah, Al Seeb, Muscat Governorate, Sultanate of Oman',
+      email: 'info@uaiassets.com',
+      phone: '+968 7170 1844',
+      whatsapp: '+968 7170 1844',
       hours: 'Sunday – Thursday, 08:00 – 17:00 (GST)'
     },
     img: IMG,
