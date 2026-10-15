@@ -1,19 +1,17 @@
 "use strict";
-const { D, esc, attr } = require("../build.js");
+const { D, esc, attr, telHref, waHref } = require("../build.js");
 
 function build() {
   const c = D.contact;
-  const mailHref = c.email && c.email.indexOf("@") > -1 && c.email.indexOf("confirmed") === -1 ? "mailto:" + c.email : "contact.html";
-  const telHref = c.phone && /\d{4}/.test(c.phone) ? "tel:" + c.phone.replace(/[^+0-9]/g, "") : "contact.html";
 
   const channels = [
-    { label: "Email", value: c.email, href: mailHref },
-    { label: "Phone", value: c.phone, href: telHref },
-    { label: "WhatsApp", value: c.whatsapp, href: "contact.html" },
+    { label: "Email", value: c.email, href: "mailto:" + c.email },
+    { label: "Phone", value: c.phone, href: telHref(c.phone) },
+    { label: "WhatsApp", value: c.whatsapp, href: waHref(c.whatsapp), external: true },
     { label: "Registered office", value: c.address, href: "contact.html" },
   ];
   const channelsHtml = channels.map((ch) => `
-        <a href="${attr(ch.href)}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px clamp(20px,2.2vw,30px);text-decoration:none;color:inherit;border-bottom:1px solid var(--color-divider)" class="uai-row-hover-tint">
+        <a href="${attr(ch.href)}"${ch.external ? ' target="_blank" rel="noopener"' : ""} style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px clamp(20px,2.2vw,30px);text-decoration:none;color:inherit;border-bottom:1px solid var(--color-divider)" class="uai-row-hover-tint">
           <span>
             <span style="display:block;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.5;margin-bottom:5px">${esc(ch.label)}</span>
             <span style="display:block;font-size:14px;font-family:var(--font-heading)">${esc(ch.value)}</span>
@@ -76,9 +74,6 @@ function build() {
           <p style="font-size:13.5px;line-height:1.7;opacity:.7;margin:0">${esc(c.location)}</p>
           <p style="font-size:12.5px;line-height:1.7;opacity:.55;margin:8px 0 0">${esc(c.hours)}</p>
         </div>${channelsHtml}
-        <div style="padding:16px clamp(20px,2.2vw,30px)">
-          <p style="font-size:11.5px;line-height:1.7;opacity:.55;margin:0">Contact details marked &ldquo;to be confirmed&rdquo; are placeholders. They are held in the site configuration and appear here the moment the company supplies them.</p>
-        </div>
       </div>
 
       <div style="border:1px solid var(--color-divider);margin-top:20px;background:var(--color-surface)">
@@ -93,7 +88,7 @@ function build() {
           <span style="position:absolute;bottom:12px;left:14px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:color-mix(in srgb,#f3f2f2 55%,transparent)">Gulf of Oman coast</span>
         </div>
         <div style="padding:16px clamp(18px,2vw,26px)">
-          <p style="font-size:12.5px;line-height:1.7;opacity:.65;margin:0">A live embedded map replaces this locator once the registered office address is confirmed.</p>
+          <p style="font-size:12.5px;line-height:1.7;opacity:.65;margin:0">${esc(c.address)}</p>
         </div>
       </div>
     </aside>
